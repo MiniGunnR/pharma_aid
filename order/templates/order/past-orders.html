@@ -1,0 +1,26 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Past Orders{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Past Orders{% endblock %}
+
+{% block heading %}
+	Past Orders
+{% endblock %}
+
+{% block items %}
+    <div class="row">
+        <div id="order-list" class="col-sm-3">
+            <ul class="nav nav-pills nav-stacked">
+                {% for order in orders %}
+                <li class="order-list-item"><a href="{% url 'order:order-details' order.transaction_id %}">Order # {{ order.transaction_id }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="order-details" class="col-sm-7"></div>
+    </div>
+{% endblock %}

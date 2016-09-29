@@ -1,0 +1,50 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Request A Product{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Request A Product{% endblock %}
+
+{% block heading %}
+	Request A Product
+{% endblock %}
+
+{% block items %}
+	<form method="POST" action="."> {% csrf_token %}
+		<table class="table table-borderless">
+		{{ form.as_table }}
+		</table>
+
+		<input type="submit" class="btn btn-primary" value="Request"/>
+	</form>
+
+    <hr/>
+
+    <h4>Previously Requested Products</h4>
+
+	<table class="table">
+    {% for product in requested_products %}
+	    {% if forloop.first %}
+		<tr>
+	        <th>Name</th>
+	        <th>Group</th>
+	        <th>Power</th>
+	        <th>Quantity</th>
+	        <th>Country</th>
+	    </tr>
+	    {% endif %}
+	    <tr>
+	        <td>{{ product.name }}</td>
+	        <td>{{ product.group }}</td>
+	        <td>{{ product.power }}</td>
+	        <td>{{ product.quantity }}</td>
+	        <td>{{ product.country }}</td>
+	    </tr>
+        {% empty %}
+        You still did not request any product from us!
+        {% endfor %}
+	</table>
+{% endblock %}

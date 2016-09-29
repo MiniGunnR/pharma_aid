@@ -1,0 +1,6 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<a href="{% url 'backend:item-update-view' object.slug %}">EDIT</a>
+<h1>{{ object.display_name }}</h1>
+{% endblock %}

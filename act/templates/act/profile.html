@@ -1,0 +1,40 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Profile{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Profile{% endblock %}
+
+{% block heading %}
+	Profile
+{% endblock %}
+
+{% block items %}
+	<table class="table">
+
+		<tr>
+			<td>Name</td>
+			<td>{{ request.user.get_full_name }}</td>
+		</tr>
+
+		<tr>
+			<td>Email</td>
+			<td>{{ request.user.email }}</td>
+		</tr>
+
+		<tr>
+			<td>Phone</td>
+			<td>{{ request.user.mobile }}</td>
+		</tr>
+
+		<tr>
+			<td>Date Joined</td>
+			<td>{{ request.user.date_joined }}</td>
+		</tr>
+
+	</table>
+
+{% endblock %}

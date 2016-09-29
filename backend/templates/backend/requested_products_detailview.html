@@ -1,0 +1,10 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<h1>{{ object.name }}</h1>
+	<p>Ordered by: {{ object.user }}</p>
+	<p>Quantity: {{ object.quantity }}</p>
+	<p>Group: {{ object.group }}</p>
+	<p>Country: {{ object.country }}</p>
+{% endblock %}
+

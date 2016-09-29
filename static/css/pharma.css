@@ -1,0 +1,395 @@
+body {
+    /*font-family: Menlo, Monaco, Consolas, "Courier New", monospace;*/
+    font-family: 'Allerta Stencil', sans-serif;
+}
+
+.navbar {
+    margin-bottom: 0;
+    background: rgba(255,255,255,1);
+    border-color: transparent;
+}
+
+nav {
+    z-index: 10;
+    -webkit-box-shadow: 0px 1px 2px 0px #888888);
+    -moz-box-shadow: 0px 1px 2px 0px #888888;
+    box-shadow: 0px 1px 2px 0px #888888;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    background-color: transparent;
+    -webkit-box-shadow: inset 0px 3px 0px #428BCA;
+    -moz-box-shadow: inset 0px 3px 0px #428BCA;
+    box-shadow: inset 0px 3px 0px #428BCA;
+}
+
+#sidebar {
+    position: fixed;
+    width: 200px;
+    margin-top: 0px;
+    height: 100%;
+    background-color: white;
+    border-right: solid;
+    border-width: 3px;
+    border-color: whitesmoke;
+    overflow-y: auto;
+
+}
+
+#sidebar > ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#sidebar > ul > li > a {
+    display: block;
+    width: 100%;
+    padding: 10px 32px;
+}
+
+#sidebar > ul > li > a:hover {
+    background-color: whitesmoke;
+    text-decoration: none;
+}
+
+#bag {
+    background-color: rgba(245, 245, 245, 0.7);
+
+    position: fixed;
+    right: 0px;
+    top: 300px;
+
+    height: 76px;
+    width: 64px;
+
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+
+    cursor: pointer;
+}
+
+#bag-header {
+    position: absolute;
+    top: 0px;
+
+    height: 30px;
+    width: 64px;
+
+    padding-top: 5px;
+}
+
+#bag-body {
+    position: absolute;
+    top: 30px;
+
+    height: 26px;
+    width: 64px;
+}
+
+#bag-footer {
+    background-color: rgba(40, 96, 144, 0.7);
+    color: white;
+
+    position: absolute;
+    bottom: 0px;
+
+    width: 64px;
+    height: 20px;
+}
+
+#big-bag {
+    position: fixed;
+    right: 0px;
+    top: 50px;
+
+    height: 100%;
+    width: 300px;
+
+    -webkit-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 6px 1px rgba(0,0,0,0.75);
+}
+
+#big-bag-header {
+    background-color: #286090;
+
+    position: absolute;
+
+    height: 40px;
+    width: 100%;
+
+    cursor: pointer;
+}
+
+#big-bag-header-left {
+    position: absolute;
+    left: 0px;
+
+    height: 40px;
+    width: 50%;
+    line-height: 40px;
+
+    padding-left: 10px;
+
+    color: white;
+}
+
+#big-bag-header-right {
+    position: absolute;
+    right: 0px;
+
+    height: 40px;
+    width: 50%;
+    line-height: 40px;
+
+    padding-right: 10px;
+
+    color: white;
+}
+
+#big-bag-body {
+    background-color: white;
+
+    position: absolute;
+
+    width: 100%;
+
+    top: 40px;
+    bottom: 90px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#big-bag-footer {
+    background-color: #286090;
+
+    position: absolute;
+    bottom: 50px;
+
+    height: 40px;
+    width: 100%;
+    line-height: 40px;
+
+    color: white;
+
+    font-family: monaco;
+
+    cursor: pointer;
+}
+
+#main {
+    padding-top: 10px;
+    padding-right: 10px;
+    margin-top: 50px;
+    margin-left: 210px;
+}
+
+.list-item {
+    position: relative;
+    width: 145px;
+    height: 252px;
+    float: left;
+    margin-top: 10px;
+    margin-left: 0px;
+    margin-right: 10px;
+}
+
+.list-item-image {
+    background-color: whitesmoke;
+    width: 100%;
+    height: 130px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.list-item-details-button {
+    background-color: #286090;
+    width: 100%;
+    height: 20px;
+    color: white;
+    font-family: Monaco;
+    font-size: 0.8em;
+    line-height: 20px;
+}
+
+.list-item-details {
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+}
+
+.list-item-button {
+    position: absolute;
+    background-color: navajowhite;
+    width: 100%;
+    height: 35px;
+    line-height: 35px;
+    font-family: Monaco;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+}
+
+/* Heading on HR tag */
+.hr-sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.35);
+	margin: 8px 0px;
+}
+.hr-sect::before,
+.hr-sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgba(0, 0, 0, 0.35);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 8px;
+}
+/* End of Heading CSS */
+
+.breadcrumb {
+    padding: 0px 15px;
+    margin-bottom: -20px;
+    background-color: transparent;
+}
+
+.breadcrumb > li + li:before {
+    content: ">\00a0";
+}
+
+/* Big Bag items style */
+.bag-item {
+    position: relative;
+
+    padding: 3px;
+
+    height: 70px;
+    width: 300px;
+}
+
+.bag-item:hover .remove {
+    display: block;
+}
+
+.left-control {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    height: 70px;
+    width: 40px;
+}
+
+.qty_up {
+    position: absolute;
+    top: 0px;
+
+    height: 27px;
+    width: 100%;
+
+    line-height: 27px;
+    padding-top: 5px;
+}
+
+.fa-sort-up, .fa-sort-down {
+    cursor: pointer;
+}
+
+.quantity {
+    position: absolute;
+    top: 27px;
+
+    height: 16px;
+    width: 100%;
+
+    line-height: 16px;
+}
+
+.qty_down {
+    position: absolute;
+    top: 43px;
+
+    height: 27px;
+    width: 100%;
+
+    line-height: 27px;
+}
+
+.left-control-button {
+    font-size: 1.3em;
+}
+
+.product_img {
+    position: absolute;
+    top: 0px;
+    left: 40px;
+
+    line-height: 70px;
+}
+
+.product_details {
+    position: absolute;
+    top: 0px;
+    left: 80px;
+}
+
+.product_name {
+    display: table-cell;
+    vertical-align: bottom;
+
+    height: 35px;
+    width: 150px;
+}
+
+.product_price {
+    position: absolute;
+    top: 35px;
+
+    height: 35px;
+    width: 150px;
+
+    display: table-cell;
+    vertical-align: top;
+}
+
+.total {
+    position: absolute;
+    top: 0px;
+    right: 20px;
+
+    height: 100%;
+    width: 50px;
+
+    text-align: right;
+
+    line-height: 70px;
+}
+
+.remove {
+    font-size: 1.1em;
+    display: none;
+    float: right;
+    cursor: pointer;
+}
+/* End of Big Bag items style */
+
+#search_form {
+    position: absolute;
+    padding-left: 200px;
+}
+
+#search_box {
+    width: 500px;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}

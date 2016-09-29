@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+<head>
+    <title>{% block head_title %}Pharma Aid{% endblock head_title %}</title>
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/frontend.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'frontend/bootstrap-social.css' %}"/>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="{% static 'frontend/frontend.js' %}"></script>
+    <script src="{% static 'frontend/mousetrap.min.js' %}"></script>
+</head>
+
+<body>
+{% block body %}
+    {% block content %}
+    {% endblock content %}
+{% endblock %}
+{% block extra_body %}
+{% endblock extra_body %}
+</body>
+</html>

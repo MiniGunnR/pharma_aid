@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+
+{% block body %}
+    <div class="container" style="width: 60%;>
+        <div class="row">
+    <h1 class="login-title">{% trans "Sign Up for a Pharma Aid Account" %}</h1>
+
+    <p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
+
+    <form class="signup form-horizontal" id="signup_form" method="post" action="/accounts/signup/">
+        {% csrf_token %}
+
+        <div class="form-group">
+            <label for="id_first_name" class="col-sm-4 control-label">First Name: </label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_first_name" maxlength="30" name="first_name" placeholder="First Name" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_last_name" class="col-sm-4 control-label">Last Name:</label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_last_name" maxlength="30" name="last_name" placeholder="Last Name" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_mobile" class="col-sm-4 control-label">Mobile Number:</label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_mobile" maxlength="30" name="mobile" placeholder="Mobile Number" type="text" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_email" class="col-sm-4 control-label">E-mail:</label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_email" name="email" placeholder="E-mail address" type="email" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_password1" class="col-sm-4 control-label">Password:</label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_password1" name="password1" placeholder="Password" type="password" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="id_password2" class="col-sm-4 control-label">Password (again):</label>
+            <div class="col-sm-8">
+                <input class="form-control sharp" id="id_password2" name="password2" placeholder="Password (again)" type="password" />
+
+                <input id="id_confirmation_key" maxlength="40" name="confirmation_key" type="hidden" />
+            </div>
+        </div>
+
+        {% if form.errors %}
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <div class="alert alert-error">
+                        <strong class="">{{ error|escape }}</strong>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+            {% for error in form.non_field_errors %}
+                <div class="alert alert-error">
+                    <strong class="">{{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8">
+                <button class="btn btn-primary sharp" type="submit">Sign Up &raquo;</button>
+            </div>
+        </div>
+    </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<a href="{% url 'backend:manufacturer-create-view' %}" class="btn btn-danger btn-sm">Add New Manufacturer</a>
+	<br/>
+	<br/>
+
+	<table class="table">
+	<tr>
+	{% for manufacturer in manufacturers %}
+		<td>
+			<a href="{% url 'backend:manufacturer-items-list-view' manufacturer.slug %}">{{ manufacturer }}</a>
+		</td>
+		{% if forloop.counter|divisibleby:2 %}
+		</tr>
+		<tr>
+		{% endif %}
+		{% empty %}
+		No manufacturers added yet!
+		{% endfor %}
+	</tr>
+	</table>
+{% endblock %}

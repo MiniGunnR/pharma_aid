@@ -1,0 +1,23 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<a href="{% url 'backend:category-create-view' %}" class="btn btn-danger btn-sm">Add New Category</a>
+	<br/>
+	<br/>
+
+	<table class="table">
+	<tr>
+	{% for category in categories %}
+		<td>
+			<a href="{% url 'backend:category-items-list-view' category.slug %}">{{ category }}</a>
+		</td>
+		{% if forloop.counter|divisibleby:2 %}
+		</tr>
+		<tr>
+		{% endif %}
+		{% empty %}
+		No categories added yet!
+		{% endfor %}
+	</tr>
+	</table>
+{% endblock %}

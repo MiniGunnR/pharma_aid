@@ -1,0 +1,10 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	{% for prescription in prescriptions %}
+		<a href="/{{ prescription.image }}"><img src="/{{ prescription.thumbnail }}"/></a>
+		{% empty %}
+		No prescriptions yet!
+		{% endfor %}
+{% endblock %}
+

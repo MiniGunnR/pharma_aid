@@ -1,0 +1,43 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Upload A Prescription{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Upload A Prescription{% endblock %}
+
+{% block heading %}
+	Upload A Prescription
+{% endblock %}
+
+{% block items %}
+	<form method="POST" action="." enctype="multipart/form-data"> {% csrf_token %}
+		<table class="table table-borderless">
+			{{ form.as_table }}
+		</table>
+
+		<input type="submit" class="btn btn-primary" value="Upload"/>
+	</form>
+
+	<hr/>
+
+	{% for item in prescriptions %}
+		<a href="#" class="pop">
+			<img src="{{ item.thumbnail.url }}" data-src="{{ item.image.url }}"/>
+		</a>
+		{% endfor %}
+
+{#	modal for showing image upon click #}
+	<div class="modal fade" id="imagemodal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="width: 100%;">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-body">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<img src="" class="imagepreview" style="width: 100%;"/>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

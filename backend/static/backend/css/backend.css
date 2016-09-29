@@ -1,0 +1,8 @@
+main {
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
+    border: none;
+}

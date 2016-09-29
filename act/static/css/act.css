@@ -1,0 +1,11 @@
+.address {
+    float: left;
+
+    margin: 10px;
+    width: 200px;
+}
+
+.make-default {
+    cursor: pointer;
+}
+

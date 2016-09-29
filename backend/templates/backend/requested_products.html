@@ -1,0 +1,9 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	{% for product in requested_products %}
+		<a href="{% url 'backend:requested-products-detail-view' product.pk %}">{{ product.created }} - {{ product }} - {{ product.user }}</a> <br/>
+		{% empty %}
+		No requested products yet!
+		{% endfor %}
+{% endblock %}

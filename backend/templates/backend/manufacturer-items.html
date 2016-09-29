@@ -1,0 +1,8 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<h3>Items under {{ manufacturer }}</h3>
+	{% for object in object_list %}
+		<a href="{% url 'backend:item-detail-view' object.slug %}">{{ object }}</a> <br/>
+		{% endfor %}
+{% endblock %}

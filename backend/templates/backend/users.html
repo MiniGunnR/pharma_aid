@@ -1,0 +1,7 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	{% for user in users %}
+		{{ user }} <br/>
+		{% endfor %}
+{% endblock %}

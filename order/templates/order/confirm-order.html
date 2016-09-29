@@ -1,0 +1,93 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Confirm Order{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Order Preview{% endblock %}
+
+{% block heading %}
+	Place Order
+{% endblock %}
+
+{% block items %}
+	<div class="row">
+		<div class="col-sm-3">Subtotal:</div>
+        <div class="col-sm-9">Tk. {{ subtotal }}</div>
+	</div>
+
+	<hr/>
+
+    <div class="row">
+		<div class="col-sm-3">Delivery Charge:</div>
+        <div class="col-sm-9">Tk. {{ delivery_charge }}</div>
+	</div>
+
+	<hr/>
+
+    <div class="row">
+		<div class="col-sm-3">Total:</div>
+        <div class="col-sm-9">Tk. {{ total }}</div>
+	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-sm-3">Delivery Address:</div>
+		<div class="col-sm-9">
+			<address>
+		        <b>{{ details.name }}</b> <br/>
+		        {{ details.address_1 }}<br/>
+		        {{ details.address_2 }}<br/>
+		        {{ details.city }} - {{ details.zip }}<br/>
+		        {{ details.country }}
+			</address>
+		</div>
+	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-sm-3">Delivery Time:</div>
+		<div class="col-sm-9">{{ time }}</div>
+	</div>
+
+	<hr/>
+
+	<div class="row">
+		<div class="col-sm-3">Payment Method:</div>
+		<div class="col-sm-9">{{ payment }}</div>
+	</div>
+
+	<hr/>
+
+    <form method="post" action="/order/save/order/"> {% csrf_token %}
+    {% if trx %}
+    <div class="row">
+        <div class="col-sm-3">Transaction ID:</div>
+        <div class="col-sm-9">
+            <input type="text" name="trx_id" id="trx_id" class="form-control" placeholder="Enter Transaction ID" required/>
+        </div>
+    </div>
+
+	<hr/>
+    {% endif %}
+
+	<div class="row">
+		<div class="col-sm-3">
+            <input type="hidden" name="address" id="address" class="form-control" value="{{ request.session.address }}"/>
+            <input type="hidden" name="time" id="time" class="form-control" value="{{ request.session.time }}"/>
+            <input type="hidden" name="payment" id="payment" class="form-control" value="{{ request.session.payment }}"/>
+            <input type="hidden" name="subtotal" id="subtotal" class="form-control" value="{{ subtotal }}"/>
+            <input type="hidden" name="delivery_charge" id="delivery_charge" class="form-control" value="{{ delivery_charge }}"/>
+            <input type="hidden" name="total" id="total" class="form-control" value="{{ total }}"/>
+        </div>
+		<div class="col-sm-9">
+			<input type="submit" id="confirm-order-button" value="Confirm Order" class="btn btn-danger btn-sm">
+		</div>
+	</div>
+    </form>
+
+{% endblock %}

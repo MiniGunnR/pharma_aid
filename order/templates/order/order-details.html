@@ -1,0 +1,52 @@
+<div id="order-detail">
+	<h4>Order # {{ order.transaction_id }}</h4>
+
+	<p>Date: {{ order.created|date:"D d M Y" }}</p>
+	<p>Status: {{ order.get_status_display }}</p>
+	<p>Subtotal: Tk. {{ order.subtotal }}</p>
+	<p>Delivery Charge: Tk. {{ order.delivery_charge }}</p>
+	<p>Total: Tk. {{ order.total }}</p>
+
+	<hr/>
+
+	<h4>Delivery Address</h4>
+
+	<p>{{ order.shipping_name }}</p>
+	<p>{{ order.shipping_address_1 }}</p>
+	<p>{{ order.shipping_address_2 }}</p>
+	<p>{{ order.shipping_city }} - {{ order.shipping_zip }}</p>
+	<p>{{ order.shipping_country }}</p>
+
+	<hr/>
+
+	<h4>Delivery Time</h4>
+
+	<p>{{ order.get_delivery_time_display }}</p>
+
+	<hr/>
+
+	<h4>Products</h4>
+
+	<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th>Total</th>
+	</tr>
+	{% for item in orderitems %}
+		<tr>
+			<td>{{ item.name }}</td>
+			<td>{{ item.price }}</td>
+			<td>{{ item.quantity }}</td>
+			<td>{{ item.total }}</td>
+		</tr>
+	    {% endfor %}
+		<tr>
+			<td>Subtotal</td>
+			<td>---</td>
+			<td>---</td>
+			<td>{{ order.subtotal }}</td>
+		</tr>
+	</table>
+</div>

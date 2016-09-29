@@ -1,0 +1,18 @@
+$(function() {
+    $(document).on("click", "#bag", function(e) {
+        e.preventDefault();
+
+        $("#bag").attr('hidden', 'hidden');
+        $("#main").css({'padding-right': 300});
+        $("#big-bag").removeAttr('hidden');
+    });
+
+    $(document).on("click", "#big-bag-header", function(e) {
+        e.preventDefault();
+
+        $("#big-bag").attr('hidden', 'hidden');
+        $("#main").css({'padding-right': 10});
+        $("#bag").removeAttr('hidden');
+    });
+});
+

@@ -1,0 +1,27 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Add Mobile{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Add Mobile{% endblock %}
+
+{% block heading %}
+	Add Mobile
+{% endblock %}
+
+{% block items %}
+    <form method="POST" action="?next={{ next }}"> {% csrf_token %}
+	    <table class="table table-borderless">
+        {{ form.as_table }}
+
+		<tr>
+			<td></td>
+			<td><input type="submit" value="Save"/></td>
+		</tr>
+
+	    </table>
+    </form>
+{% endblock %}

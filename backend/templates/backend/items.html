@@ -1,0 +1,22 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<a href="{% url 'backend:item-create-view' %}" class="btn btn-danger btn-sm" xmlns="http://www.w3.org/1999/html">Add New Product</a>
+	<br/>
+	<br/>
+	<table class="table">
+	<tr>
+	{% for product in products %}
+		<td>
+			<a href="{% url 'backend:item-detail-view' product.slug %}">{{ product }}</a>
+		</td>
+		{% if forloop.counter|divisibleby:4 %}
+		</tr>
+		<tr>
+		{% endif %}
+		{% empty %}
+		No products added yet!
+		{% endfor %}
+	</tr>
+	</table>
+{% endblock %}

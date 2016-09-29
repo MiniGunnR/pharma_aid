@@ -1,0 +1,12 @@
+#address-info {
+    background-color: whitesmoke;
+    width: 200px;
+    padding: 10px;
+    margin: 10px;
+    margin-left: 0px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+

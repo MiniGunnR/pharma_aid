@@ -1,0 +1,12 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<table class="table table-striped table-borderless">
+	{% for item in misc %}
+		<tr>
+			<td><a href="{% url 'backend:misc-settings-updateview' item.pk %}">{{ item.name }}</a></td>
+			<td>{{ item.value }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}Place Order{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}Place Order{% endblock %}
+
+{% block heading %}
+	Place Order
+{% endblock %}
+
+{% block items %}
+	<form method="post" action="/order/confirm/order/"> {% csrf_token %}
+
+    <div class="row">
+        <div class="col-sm-3">Delivery Address:</div>
+        <div class="col-sm-9">
+            <div class="btn-group" data-toggle="buttons">
+                {% for address in my_addresses %}
+                <label class="btn btn-default address-button{% if address.default %} active{% endif %}" data-id="{{ address.id }}">
+                    <input type="radio" name="address_options" id="address-{{ address.id }}" value={{ address.id }} autocomplete="off"{% if address.default %} checked{% endif %}>{{ address.address_name }}
+                </label>
+                {% endfor %}
+            </div>
+
+            <a href="{% url 'my_account:add-address' %}?next=/order/place/order/" class="btn btn-primary" id="add-address">+</a>
+
+            <address id="address-info">
+                <b>{{ default_address.addressinfo.name }}</b> <br/>
+                {{ default_address.addressinfo.address_1 }}<br/>
+                {{ default_address.addressinfo.address_2 }}<br/>
+                {{ default_address.addressinfo.city }} - {{ default_address.addressinfo.zip }}<br/>
+                {{ default_address.addressinfo.country }}
+            </address>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-3">Delivery Time:</div>
+        <div class="col-sm-9">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default">
+                    <input type="radio" name="time_options" value=1 autocomplete="off">Morning
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="time_options" value=2 autocomplete="off">Noon
+                </label>
+                <label class="btn btn-default active">
+                    <input type="radio" name="time_options" value=3 autocomplete="off" checked>Evening
+                </label>
+                <label class="btn btn-default">
+                    <input type="radio" name="time_options" value=4 autocomplete="off">Night
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-3">Payment Method:</div>
+        <div class="col-sm-9">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-default active">
+                    <input type="radio" name="payment_options" value=1 autocomplete="off" checked>Cash on Delivery
+                </label>
+                <label class="btn btn-default" id="bkash-radio">
+                    <input type="radio" name="payment_options" value=2 autocomplete="off">bKash
+                </label>
+            </div>
+
+{#            <input type="hidden" name="trx_id" id="trx_id" class="form-control" placeholder="Enter Transaction ID"/>#}
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input class="btn btn-primary" type="submit" value="Place Order"/>
+        </div>
+    </div>
+
+
+	</form>
+{% endblock %}

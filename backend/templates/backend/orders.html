@@ -1,0 +1,10 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	{% for order in orders %}
+		<a href="{% url 'backend:order-detail-view' order.id %}">{{ order }}</a> <br/>
+		{% empty %}
+		No orders yet!
+		{% endfor %}
+{% endblock %}
+
