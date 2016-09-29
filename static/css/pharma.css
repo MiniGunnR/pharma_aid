@@ -34,7 +34,7 @@ nav {
     border-right: solid;
     border-width: 3px;
     border-color: whitesmoke;
-    overflow-y: auto;
+    overflow-y: scroll;
 
 }
 
