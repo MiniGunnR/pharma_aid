@@ -1,6 +1,18 @@
 {% extends "admin_base.html" %}
 
 {% block main %}
-	<a href="{% url 'backend:item-update-view' object.slug %}">EDIT</a>
-<h1>{{ object.display_name }}</h1>
+	<a href="{% url 'backend:item-update-view' object.slug %}" class="btn btn-danger">EDIT</a>
+	<h3>{{ object.display_name }}</h3>
+	<h4>Generic: {{ object.generic }}</h4>
+	<h4>Category: {{ object.category }}</h4>
+	<h4>Dosage: {{ object.get_dosage_display }}</h4>
+	<h4>Power: {{ object.power }}</h4>
+	<h4>Manufacturer: {{ object.manufacturer }}</h4>
+	<h4>SKU: {{ object.sku }}</h4>
+	<h4>Tk. {{ object.price }}</h4>
+	<h4>Unit: {{ object.unit }}</h4>
+	<h4>Description: {{ object.description }}</h4>
+	<h4>Meta Keywords: {{ object.meta_keywords }}</h4>
+	<h4>Meta Description: {{ object.meta_description }}</h4>
+
 {% endblock %}
