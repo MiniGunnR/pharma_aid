@@ -28,14 +28,13 @@ nav {
 #sidebar {
     position: fixed;
     width: 200px;
-    margin-top: 0px;
+    margin-top: 0;
     height: calc(100% - 50px);
     background-color: white;
     border-right: solid;
     border-width: 3px;
     border-color: whitesmoke;
-    overflow-y: scroll;
-
+    overflow-y: auto;
 }
 
 #sidebar > ul {
