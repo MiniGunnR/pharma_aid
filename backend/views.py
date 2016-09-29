@@ -3,6 +3,8 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import UpdateView, CreateView
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
 
 from act.models import User
@@ -11,12 +13,12 @@ from order.models import RequestedProduct, Order, Prescription, OrderItem
 from utils.models import Misc
 
 
-@login_required
+@staff_member_required
 def dashboard(request):
     return render(request, "backend/dashboard.html")
 
 
-@login_required
+@staff_member_required
 def items(request):
     products = Product.objects.all()
     context = {
@@ -29,12 +31,20 @@ class ItemDetailView(DetailView):
     model = Product
     template_name = "backend/item-detail.html"
 
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ItemDetailView, self).dispatch(*args, **kwargs)
+
 
 class ItemUpdateView(UpdateView):
     model = Product
     fields = ['name', 'generic', 'power', 'manufacturer', 'sku', 'price', 'is_active', 'unit', 'description', 'meta_keywords', 'meta_description', 'category', 'dosage']
     template_name = "backend/item-form.html"
     success_url = '../../'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ItemUpdateView, self).dispatch(*args, **kwargs)
 
 
 class ItemCreateView(CreateView):
@@ -43,8 +53,12 @@ class ItemCreateView(CreateView):
     template_name = "backend/item-form.html"
     success_url = '/backend/items/'
 
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ItemCreateView, self).dispatch(*args, **kwargs)
 
-@login_required
+
+@staff_member_required
 def manufacturers(request):
     manufacturers = Manufacturer.objects.all()
     context = {
@@ -58,6 +72,10 @@ class ManufacturerCreateView(CreateView):
     fields = ['name']
     template_name = "backend/manufacturer-form.html"
     success_url = '/backend/manufacturers/'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ManufacturerCreateView, self).dispatch(*args, **kwargs)
 
 
 class ManufacturerItemsListView(ListView):
@@ -73,7 +91,11 @@ class ManufacturerItemsListView(ListView):
         manufacturer = Manufacturer.objects.get(slug=self.kwargs['slug'])
         return Product.objects.filter(manufacturer=manufacturer)
 
-@login_required
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(ManufacturerItemsListView, self).dispatch(*args, **kwargs)
+
+@staff_member_required
 def categories(request):
     categories = Category.objects.all()
     context = {
@@ -87,6 +109,10 @@ class CategoryCreateView(CreateView):
     fields = ['name', 'description', 'is_active', 'meta_keywords', 'meta_description']
     template_name = "backend/category-form.html"
     success_url = '/backend/categories/'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CategoryCreateView, self).dispatch(*args, **kwargs)
 
 
 class CategoryItemsListView(ListView):
@@ -102,8 +128,12 @@ class CategoryItemsListView(ListView):
         category = Category.objects.get(slug=self.kwargs['slug'])
         return Product.objects.filter(category=category)
 
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(CategoryItemsListView, self).dispatch(*args, **kwargs)
 
-@login_required
+
+@staff_member_required
 def requested_products(request):
     requested_products = RequestedProduct.objects.all().order_by('-created')
     context = {
@@ -116,8 +146,12 @@ class RequestedProductDetailView(DetailView):
     model = RequestedProduct
     template_name = "backend/requested_products_detailview.html"
 
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(RequestedProductDetailView, self).dispatch(*args, **kwargs)
 
-@login_required
+
+@staff_member_required
 def orders(request):
     orders = Order.objects.all().order_by('-created')
     context = {
@@ -135,7 +169,12 @@ class OrderDetailView(DetailView):
         context['items'] = OrderItem.objects.filter(order=self.object)
         return context
 
-@login_required
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(OrderDetailView, self).dispatch(*args, **kwargs)
+
+
+@staff_member_required
 def prescriptions(request):
     prescriptions = Prescription.objects.all()
     context = {
@@ -143,7 +182,7 @@ def prescriptions(request):
     }
     return render(request, "backend/prescription.html", context)
 
-@login_required
+@staff_member_required
 def Users(request):
     users = User.objects.all()
     context = {
@@ -152,7 +191,7 @@ def Users(request):
     return render(request, "backend/users.html", context)
 
 
-@login_required
+@staff_member_required
 def MiscView(request):
     misc = Misc.objects.all()
     context = {
@@ -166,3 +205,7 @@ class MiscSettingsUpdateView(UpdateView):
     fields = ['value']
     template_name = "backend/misc-form.html"
     success_url = '/backend/misc/settings/'
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(MiscSettingsUpdateView, self).dispatch(*args, **kwargs)
