@@ -51,6 +51,7 @@ class Product(TimeStamped):
     SANITARY_NAPKIN = 9
     CREAM = 10
     OINTMENT = 11
+    BLANK = 12
 
     # set of possible dosage types
     DOSAGE_TYPES = (
@@ -65,6 +66,7 @@ class Product(TimeStamped):
         (SANITARY_NAPKIN, 'Sanitary Napkin'),
         (CREAM, 'Cream'),
         (OINTMENT, 'Ointment'),
+        (BLANK, ''),
     )
 
     name = models.CharField(max_length=255)

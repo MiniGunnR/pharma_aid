@@ -166,4 +166,3 @@ class MiscSettingsUpdateView(UpdateView):
     fields = ['value']
     template_name = "backend/misc-form.html"
     success_url = '/backend/misc/settings/'
-
