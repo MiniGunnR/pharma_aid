@@ -1,5 +1,4 @@
 {% extends "skeleton.html" %}
-{% load cache %}
 
 {% block title-suffix %}{{ category_slug|capfirst }}{% endblock %}
 
@@ -7,13 +6,12 @@
 	{% include "tags/category_list.html" %}
 {% endblock %}
 
-{% block breadcrumb-heading %}{{ category_slug|capfirst }}{% endblock %}
+{% block breadcrumb-heading %}{{ page_title }}{% endblock %}
 
 {% block heading %}
-	{{ category_slug|capfirst }}
+	{{ page_title }}
 {% endblock %}
 
-{% cache 500 items %}
 {% block items %}
 	{% for item in products %}
 	    <div class="list-item">
@@ -35,4 +33,4 @@
         </div>
 	    {% endfor %}
 {% endblock %}
-{% endcache %}
+

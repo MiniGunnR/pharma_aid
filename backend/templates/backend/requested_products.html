@@ -1,9 +1,16 @@
 {% extends "admin_base.html" %}
 
 {% block main %}
+	<table class="table">
 	{% for product in requested_products %}
-		<a href="{% url 'backend:requested-products-detail-view' product.pk %}">{{ product.created }} - {{ product }} - {{ product.user }}</a> <br/>
+		<tr>
+			<td>ø</td>
+			<td>{{ product.created }}</td>
+			<td><a href="{% url 'backend:requested-products-detail-view' product.pk %}">{{ product }}</a></td>
+			<td>{{ product.user }}</td>
+		</tr>
 		{% empty %}
 		No requested products yet!
 		{% endfor %}
+	</table>
 {% endblock %}

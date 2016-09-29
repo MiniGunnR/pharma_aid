@@ -11,7 +11,7 @@
 		<td>
 			<a href="{% url 'backend:category-items-list-view' category.slug %}">{{ category }}</a>
 		</td>
-		{% if forloop.counter|divisibleby:2 %}
+		{% if forloop.counter|divisibleby:4 %}
 		</tr>
 		<tr>
 		{% endif %}

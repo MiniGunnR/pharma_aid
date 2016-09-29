@@ -6,7 +6,7 @@
 	{% include "tags/category_list.html" %}
 {% endblock %}
 
-{% block breadcrumb-heading %}<a href="{% url 'catalog:category' product.categories.all.0.slug %}">{{ product.categories.all.0 }}</a></li><li class="active">{{ product }}{% endblock %}
+{% block breadcrumb-heading %}<a href="{% url 'catalog:category' product.category.slug %}">{{ product.category }}</a></li><li class="active">{{ product }}{% endblock %}
 
 {% block heading %}
 	Product Details
