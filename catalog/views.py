@@ -2,7 +2,6 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
-from django.views.decorators.cache import cache_page
 
 import csv
 from django.conf import settings
@@ -17,7 +16,6 @@ def index(request):
     return HttpResponseRedirect('/category/medicine/')
 
 
-@cache_page(60 * 15)
 def show_category(request, category_slug):
     c = get_object_or_404(Category, slug=category_slug)
     products = c.product_set.all()

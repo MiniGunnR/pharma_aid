@@ -1,3 +1,4 @@
+{% load cache %}
 {% extends "skeleton.html" %}
 
 {% block title-suffix %}{{ category_slug|capfirst }}{% endblock %}
@@ -12,6 +13,7 @@
 	{{ category_slug|capfirst }}
 {% endblock %}
 
+{% cache 500 items %}
 {% block items %}
 	{% for item in products %}
 	    <div class="list-item">
@@ -33,3 +35,4 @@
         </div>
 	    {% endfor %}
 {% endblock %}
+{% endcache %}
