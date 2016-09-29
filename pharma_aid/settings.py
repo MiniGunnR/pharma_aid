@@ -53,13 +53,6 @@ INSTALLED_APPS = [
     'backend',
 ]
 
-CACHES = {
-   'default': {
-      'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-      'LOCATION': '/var/tmp/pharma_cache',
-   }
-}
-
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -70,16 +63,6 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
-MIDDLEWARE_CLASSES += (
-   'django.middleware.cache.UpdateCacheMiddleware',
-   'django.middleware.common.CommonMiddleware',
-   'django.middleware.cache.FetchFromCacheMiddleware',
-)
-
-CACHE_MIDDLEWARE_ALIAS = "default"
-
-CACHE_MIDDLEWARE_SECONDS = 60
 
 ROOT_URLCONF = 'pharma_aid.urls'
 
