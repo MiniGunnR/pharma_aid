@@ -38,8 +38,8 @@ class Manufacturer(TimeStamped):
         return self.name
 
     def save(self, *args, **kwargs):
-	    self.slug = slugify(self.name)
-	    super(Manufacturer, self).save(*args, **kwargs)
+        self.slug = slugify(self.name)
+        super(Manufacturer, self).save(*args, **kwargs)
 
 
 class Product(TimeStamped):
@@ -87,6 +87,12 @@ class Product(TimeStamped):
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
     category = models.ForeignKey(Category)
+    related = models.ManyToManyField("self")
+
+    height = models.CharField(max_length=4, blank=True, null=True)
+    width = models.CharField(max_length=4, blank=True, null=True)
+    image = models.ImageField(upload_to='media/img/items', height_field='height', width_field='width', blank=True)
+    thumbnail = models.ImageField(upload_to='media/img/items', height_field='height', width_field='width', blank=True)
 
     dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
                                          default=TABLET)
@@ -118,7 +124,41 @@ class Product(TimeStamped):
         else:
             return "{0} {1} {2}".format(self.name, self.power, self.get_dosage_display())
 
+    def create_thumbnail(self):
+        if not self.image:
+            return
+
+        from PIL import Image
+        from io import StringIO
+        from django.core.files.uploadedfile import SimpleUploadedFile
+        import os
+
+        THUMBNAIL_SIZE = (200,200)
+
+        DJANGO_TYPE = self.image.file.content_type
+
+        if DJANGO_TYPE == 'image/jpeg':
+            PIL_TYPE = 'jpeg'
+            FILE_EXTENSION = 'jpg'
+        elif DJANGO_TYPE == 'image/png':
+            PIL_TYPE = 'png'
+            FILE_EXTENSION = 'png'
+
+        image = Image.open(StringIO(self.image.read()))
+
+        image.thumbnail(THUMBNAIL_SIZE, Image.ANTIALIAS)
+
+        temp_handle = StringIO()
+        image.save(temp_handle, PIL_TYPE)
+        temp_handle.seek(0)
+
+        suf = SimpleUploadedFile(os.path.split(self.image.name)[-1],
+            temp_handle.read(), content_type=DJANGO_TYPE)
+
+        self.thumbnail.save('%s_thumbnail.%s'%(os.path.splitext(suf.name)[0],FILE_EXTENSION), suf, save=False)
+
     def save(self, *args, **kwargs):
         # self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, self.power))
         self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(random.random())))
+        self.create_thumbnail()
         super(Product, self).save(*args, **kwargs)
