@@ -3,9 +3,14 @@ body {
     font-family: 'Allerta Stencil', sans-serif;
 }
 
+a {
+    color: black;
+}
+
 .navbar {
     margin-bottom: 0;
-    background: rgba(255,255,255,1);
+    background: rgba(255, 192, 56, 1);
+    /*background-color: #ffc038;*/
     border-color: transparent;
 }
 
@@ -90,7 +95,8 @@ nav {
 }
 
 #bag-footer {
-    background-color: rgba(40, 96, 144, 0.7);
+    /*background-color: rgba(40, 96, 144, 0.7);*/
+    background-color: gray;
     color: white;
 
     position: absolute;
@@ -114,7 +120,8 @@ nav {
 }
 
 #big-bag-header {
-    background-color: #286090;
+    /*background-color: #286090;*/
+    background-color: gray;
 
     position: absolute;
 
@@ -165,7 +172,8 @@ nav {
 }
 
 #big-bag-footer {
-    background-color: #286090;
+    /*background-color: #286090;*/
+    background-color: lightcoral;
 
     position: absolute;
     bottom: 50px;
@@ -207,7 +215,8 @@ nav {
 }
 
 .list-item-details-button {
-    background-color: #286090;
+    /*background-color: #286090;*/
+    background-color: coral;
     width: 100%;
     height: 20px;
     color: white;
@@ -387,6 +396,10 @@ nav {
 
 #search_box {
     width: 500px;
+}
+
+#search_box:focus {
+    border-color: coral;
 }
 
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
