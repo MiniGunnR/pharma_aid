@@ -187,7 +187,8 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 ACCOUNT_SIGNUP_FORM_CLASS = "utils.forms.SignupForm"
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django_sendmail_backend.backends.EmailBackend'
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
