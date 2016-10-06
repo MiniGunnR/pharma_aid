@@ -59,6 +59,30 @@ nav {
     text-decoration: none;
 }
 
+
+
+
+#sidebar > ul > li > ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+#sidebar > ul > li > ul > li > a {
+    display: block;
+    width: 100%;
+    padding: 10px 52px;
+}
+
+#sidebar > ul > li > ul > li > a:hover {
+    background-color: whitesmoke;
+    text-decoration: none;
+}
+
+
+
+
+
 #bag {
     background-color: rgba(245, 245, 245, 0.7);
 

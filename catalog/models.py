@@ -30,6 +30,25 @@ class Category(TimeStamped):
         return reverse('catalog:category', kwargs={ "category_slug": self.slug })
 
 
+class SubCategory(TimeStamped):
+    category = models.ForeignKey(Category)
+    name = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = 'sub_categories'
+        ordering = ['name']
+        verbose_name_plural = 'Sub-Categories'
+
+    def __str__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(SubCategory, self).save(*args, **kwargs)
+
+
 class Manufacturer(TimeStamped):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
@@ -133,7 +152,7 @@ class Product(TimeStamped):
         from django.core.files.uploadedfile import SimpleUploadedFile
         import os
 
-        THUMBNAIL_SIZE = (200,200)
+        THUMBNAIL_SIZE = (130,130)
 
         DJANGO_TYPE = self.image.file.content_type
 

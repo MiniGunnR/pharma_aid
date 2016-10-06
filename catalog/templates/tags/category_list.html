@@ -1,3 +1,14 @@
 {% for c in active_categories %}
-    <li><a href="{{ c.get_absolute_url }}">{{ c.name }}</a></li>
+    <li>
+	    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+        <ul>
+        {% if c.slug in request.path %}
+        {% for s in c.subcategory_set.all %}
+	        <li>
+		        <a href="#">{{ s.name }}</a>
+	        </li>
+            {% endfor %}
+        {% endif %}
+        </ul>
+    </li>
     {% endfor %}

@@ -195,4 +195,3 @@ SOCIALACCOUNT_PROVIDERS = {
         'METHOD': 'js_sdk'
     }
 }
-

@@ -1,4 +1,4 @@
-from catalog.models import Category
+from catalog.models import Category, SubCategory
 from cart.models import Cart, CartItem
 
 from django.conf import settings
@@ -30,6 +30,7 @@ def pharma_aid(request):
         'total_taka': total_taka,
         'big_bag_items': big_bag_items,
         'active_categories': Category.objects.filter(is_active=True),
+        'active_sub_categories': SubCategory.objects.filter(is_active=True),
         'site_name': settings.SITE_NAME,
         'meta_keywords': settings.META_KEYWORDS,
         'meta_description': settings.META_DESCRIPTION,

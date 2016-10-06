@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Category, Product, Manufacturer
+from .models import Category, Product, Manufacturer, SubCategory
 from .forms import ProductAdminForm
 
 
@@ -33,3 +33,7 @@ admin.site.register(Category, CategoryAdmin)
 class ManufacturerAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('name',)}
 admin.site.register(Manufacturer, ManufacturerAdmin)
+
+class SubCategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug' : ('name',)}
+admin.site.register(SubCategory, SubCategoryAdmin)
