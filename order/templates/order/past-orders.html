@@ -18,6 +18,8 @@
             <ul class="nav nav-pills nav-stacked">
                 {% for order in orders %}
                 <li class="order-list-item"><a href="{% url 'order:order-details' order.transaction_id %}">Order # {{ order.transaction_id }}</a></li>
+                {% empty %}
+	                <h4>No orders placed yet!</h4>
                 {% endfor %}
             </ul>
         </div>

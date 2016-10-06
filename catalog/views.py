@@ -7,7 +7,7 @@ import csv
 from django.conf import settings
 from django.utils.text import slugify
 
-from .models import Category, Product
+from .models import Category, Product, SubCategory
 
 
 def index(request):
@@ -19,6 +19,17 @@ def index(request):
 def show_category(request, category_slug):
     c = get_object_or_404(Category, slug=category_slug)
     products = c.product_set.all()
+    page_title = c.name
+    meta_keywords = c.meta_keywords
+    meta_description = c.meta_description
+    return render(request, "catalog/category.html", locals())
+
+
+# code will change depending on excel structure
+def show_subcategory(request, category_slug, subcategory_slug):
+    c = get_object_or_404(Category, slug=category_slug)
+    s = get_object_or_404(SubCategory, slug=subcategory_slug)
+    products = c.product_set.filter(subcategory=s)
     page_title = c.name
     meta_keywords = c.meta_keywords
     meta_description = c.meta_description

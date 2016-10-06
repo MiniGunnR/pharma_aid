@@ -27,5 +27,8 @@
 			</div>
 			<div class="panel-footer text-center {% if not address.default %}make-default{% endif %}" id="default-button-{{ address.id }}" data-id="{{ address.id }}">{% if not address.default %}Make Default{% else %}Default{% endif %}</div>
 		</div>
+		{% empty %}
+		<h4>No addresses added yet!</h4>
+		<a href="{% url 'my_account:add-address' %}" class="btn btn-primary btn-sm">Add Address</a>
 		{% endfor %}
 {% endblock %}

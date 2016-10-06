@@ -110,6 +110,7 @@ class Product(TimeStamped):
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
     category = models.ForeignKey(Category)
+    subcategory = models.ForeignKey(SubCategory)
     related = models.ManyToManyField("self", blank=True)
 
     @deconstructible
