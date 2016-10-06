@@ -1,6 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
 import random
+import os
+from uuid import uuid4
+from django.utils.deconstruct import deconstructible
+from django.conf import settings
 
 from utils.models import TimeStamped
 
@@ -108,10 +112,27 @@ class Product(TimeStamped):
     category = models.ForeignKey(Category)
     related = models.ManyToManyField("self", blank=True)
 
+    @deconstructible
+    class UploadToPathAndRename(object):
+
+        def __init__(self, path):
+            self.sub_path = path
+
+        def __call__(self, instance, filename):
+            ext = filename.split('.')[-1]
+            # get filename
+            if instance.slug:
+                filename = '{}.{}'.format(instance.slug , ext)
+            else:
+                # set filename as random string
+                filename = '{}.{}'.format(uuid4().hex, ext)
+            # return the whole path to the file
+            return os.path.join(self.sub_path, filename)
+
     height = models.CharField(max_length=4, blank=True, null=True)
     width = models.CharField(max_length=4, blank=True, null=True)
-    image = models.ImageField(upload_to='img/items', height_field='height', width_field='width', blank=True)
-    thumbnail = models.ImageField(upload_to='img/items', height_field='height', width_field='width', blank=True)
+    image = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
+    thumbnail = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
 
     dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
                                          default=TABLET)
