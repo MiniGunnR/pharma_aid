@@ -18,7 +18,7 @@ class Category(TimeStamped):
         ordering = ['name']
         verbose_name_plural = 'Categories'
 
-    def __str__(self):
+    def __unicode__(self):
         return self. name
 
     def save(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class SubCategory(TimeStamped):
         ordering = ['name']
         verbose_name_plural = 'Sub-Categories'
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     def save(self, *args, **kwargs):
@@ -53,7 +53,7 @@ class Manufacturer(TimeStamped):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     def save(self, *args, **kwargs):
@@ -106,12 +106,12 @@ class Product(TimeStamped):
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
     category = models.ForeignKey(Category)
-    related = models.ManyToManyField("self")
+    related = models.ManyToManyField("self", blank=True)
 
     height = models.CharField(max_length=4, blank=True, null=True)
     width = models.CharField(max_length=4, blank=True, null=True)
-    image = models.ImageField(upload_to='media/img/items', height_field='height', width_field='width', blank=True)
-    thumbnail = models.ImageField(upload_to='media/img/items', height_field='height', width_field='width', blank=True)
+    image = models.ImageField(upload_to='img/items', height_field='height', width_field='width', blank=True)
+    thumbnail = models.ImageField(upload_to='img/items', height_field='height', width_field='width', blank=True)
 
     dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
                                          default=TABLET)
@@ -120,7 +120,7 @@ class Product(TimeStamped):
         db_table = 'products'
         ordering = ['-created']
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     @models.permalink
@@ -148,7 +148,7 @@ class Product(TimeStamped):
             return
 
         from PIL import Image
-        from io import StringIO
+        from cStringIO import StringIO
         from django.core.files.uploadedfile import SimpleUploadedFile
         import os
 

@@ -12,12 +12,14 @@ class Order(TimeStamped):
     PROCESSED = 2
     DELIVERED = 3
     CANCELLED = 4
+    RETURNED = 5
 
     # set of possible order statuses
     ORDER_STATUSES = ((SUBMITTED,'Submitted'),
                       (PROCESSED,'Processed'),
                       (DELIVERED,'Shipped'),
-                      (CANCELLED,'Cancelled'),)
+                      (CANCELLED,'Cancelled'),
+                      (RETURNED,'Returned'),)
 
     # each individual delivery time
     MORNING = 1
@@ -71,7 +73,7 @@ class Order(TimeStamped):
     payment_method = models.IntegerField(choices=PAYMENT_METHODS, default=CASH_ON_DELIVERY)
     trx_id = models.CharField(max_length=100, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return 'Order #' + str(self.transaction_id)
 
     @property
@@ -110,7 +112,7 @@ class OrderItem(models.Model):
     def sku(self):
         return self.product.sku
 
-    def __str__(self):
+    def __unicode__(self):
         return self.product.name + ' (' + self.product.sku + ')'
 
     def get_absolute_url(self):
@@ -125,21 +127,21 @@ class RequestedProduct(TimeStamped):
     quantity = models.CharField(max_length=100)
     country = models.CharField(max_length=100, blank=True)
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
 
 class Prescription(TimeStamped):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     # image = models.ImageField(upload_to='static/img/uploads/prescription', height_field='height', width_field='width')
-    image = models.ImageField(upload_to='img/uploads/prescription', height_field='height', width_field='width')
+    image = models.ImageField(upload_to='img/prescription', height_field='height', width_field='width')
     # thumbnail = models.ImageField(upload_to='static/img/uploads/prescription')
-    thumbnail = models.ImageField(upload_to='img/uploads/prescription')
+    thumbnail = models.ImageField(upload_to='img/prescription')
     height = models.PositiveIntegerField(blank=True, null=True)
     width = models.PositiveIntegerField(blank=True, null=True)
 
 
-    def __str__(self):
+    def __unicode__(self):
         return "{0} - {1}".format(self.user, self.id)
 
     def create_thumbnail(self):
@@ -175,6 +177,6 @@ class Prescription(TimeStamped):
 
         self.thumbnail.save('{0}_thumbnail.{1}'.format(os.path.splitext(suf.name)[0],FILE_EXTENSION), suf, save=False)
 
-    def save(self):
+    def save(self, *args, **kwargs):
         self.create_thumbnail()
-        super(Prescription, self).save()
+        super(Prescription, self).save(*args, **kwargs)
