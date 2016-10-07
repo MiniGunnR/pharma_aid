@@ -2,7 +2,13 @@
 
 {% block main %}
 	{% for prescription in prescriptions %}
-		<a href="/{{ prescription.image }}"><img src="/{{ prescription.thumbnail }}"/></a>
+		<div class="row">
+			<div class="col-md-4">
+				{{ prescription.user.get_full_name }} <br/>
+				{{ prescription.created }} <br/>
+				<a href="/media/{{ prescription.image }}"><img src="/media/{{ prescription.thumbnail }}"/></a>
+			</div>
+		</div>
 		{% empty %}
 		No prescriptions yet!
 		{% endfor %}

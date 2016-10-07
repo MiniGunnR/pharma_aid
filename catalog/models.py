@@ -65,6 +65,23 @@ class Manufacturer(TimeStamped):
         super(Manufacturer, self).save(*args, **kwargs)
 
 
+@deconstructible
+class UploadToPathAndRename(object):
+
+    def __init__(self, path):
+        self.sub_path = path
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.slug:
+            filename = '{}.{}'.format(instance.slug , ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(self.sub_path, filename)
+
 class Product(TimeStamped):
     # each individual dosage assignment
     TABLET = 1
@@ -112,23 +129,6 @@ class Product(TimeStamped):
     category = models.ForeignKey(Category)
     subcategory = models.ForeignKey(SubCategory)
     related = models.ManyToManyField("self", blank=True)
-
-    @deconstructible
-    class UploadToPathAndRename(object):
-
-        def __init__(self, path):
-            self.sub_path = path
-
-        def __call__(self, instance, filename):
-            ext = filename.split('.')[-1]
-            # get filename
-            if instance.slug:
-                filename = '{}.{}'.format(instance.slug , ext)
-            else:
-                # set filename as random string
-                filename = '{}.{}'.format(uuid4().hex, ext)
-            # return the whole path to the file
-            return os.path.join(self.sub_path, filename)
 
     height = models.CharField(max_length=4, blank=True, null=True)
     width = models.CharField(max_length=4, blank=True, null=True)

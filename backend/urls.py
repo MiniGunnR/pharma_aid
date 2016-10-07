@@ -24,6 +24,7 @@ urlpatterns = [
 
     url(r'^orders/$', views.orders, name='orders'),
     url(r'^orders/(?P<pk>\d+)/details/$', views.OrderDetailView.as_view(), name='order-detail-view'),
+    url(r'^orders/(?P<pk>\d+)/change/status/', views.OrderChangeStatusUpdateView.as_view(), name='order-change-status-update-view'),
 
     url(r'^prescriptions/$', views.prescriptions, name='prescriptions'),
 

@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
 
 from act.models import User
-from catalog.models import Category, Product, Manufacturer
+from catalog.models import Category, Product, Manufacturer, SubCategory
 from order.models import RequestedProduct, Order, Prescription, OrderItem
 from utils.models import Misc
 
@@ -160,6 +160,20 @@ def orders(request):
     return render(request, "backend/orders.html", context)
 
 
+def status_colour(status_id):
+    if status_id == 1:
+        colour = 'primary'
+    elif status_id == 2:
+        colour = 'info'
+    elif status_id == 3:
+        colour = 'success'
+    elif status_id == 4:
+        colour = 'danger'
+    else:
+        colour = 'warning'
+    return colour
+
+
 class OrderDetailView(DetailView):
     model = Order
     template_name = "backend/order-detail.html"
@@ -167,6 +181,7 @@ class OrderDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(OrderDetailView, self).get_context_data()
         context['items'] = OrderItem.objects.filter(order=self.object)
+        context['colour'] = status_colour(self.object.status)
         return context
 
     @method_decorator(staff_member_required)
@@ -174,9 +189,16 @@ class OrderDetailView(DetailView):
         return super(OrderDetailView, self).dispatch(*args, **kwargs)
 
 
+class OrderChangeStatusUpdateView(UpdateView):
+    model = Order
+    fields = ['status']
+    template_name = "backend/order-change-status-update-view.html"
+    success_url = "../../details/"
+
+
 @staff_member_required
 def prescriptions(request):
-    prescriptions = Prescription.objects.all()
+    prescriptions = Prescription.objects.order_by('-created')
     context = {
         "prescriptions": prescriptions,
     }

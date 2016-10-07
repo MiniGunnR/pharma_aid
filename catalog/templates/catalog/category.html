@@ -14,7 +14,9 @@
 {% endblock %}
 
 {% block banner %}
-	<img src="{% static 'img/banner.jpg' %}" width="93%"/>
+	{% if request.path == '/category/medicine/' %}
+		<img src="{% static 'img/banner.jpg' %}" width="93%"/>
+	{% endif %}
 {% endblock %}
 
 {% block items %}
