@@ -2,7 +2,8 @@
 
 {% block main %}
 	<h1>{{ object.name }}</h1>
-	<p>Ordered by: {{ object.user }}</p>
+	<p>Ordered by: {{ object.user.get_full_name }}</p>
+	<p>Order Time: {{ object.created }}</p>
 	<p>Quantity: {{ object.quantity }}</p>
 	<p>Group: {{ object.group }}</p>
 	<p>Country: {{ object.country }}</p>

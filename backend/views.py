@@ -7,7 +7,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.core.urlresolvers import reverse
 
-from act.models import User
+from act.models import User, Address, AddressInfo
 from catalog.models import Category, Product, Manufacturer, SubCategory
 from order.models import RequestedProduct, Order, Prescription, OrderItem
 from utils.models import Misc
@@ -203,6 +203,22 @@ def prescriptions(request):
         "prescriptions": prescriptions,
     }
     return render(request, "backend/prescription.html", context)
+
+
+class PrescriptionDetailView(DetailView):
+    model = Prescription
+    template_name = "backend/prescription-detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(PrescriptionDetailView, self).get_context_data()
+        context['address'] = Address.objects.filter(user=self.request.user)
+        return context
+
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(PrescriptionDetailView, self).dispatch(*args, **kwargs)
+
 
 @staff_member_required
 def Users(request):

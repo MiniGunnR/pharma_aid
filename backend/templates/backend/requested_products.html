@@ -7,7 +7,7 @@
 			<td>ø</td>
 			<td>{{ product.created }}</td>
 			<td><a href="{% url 'backend:requested-products-detail-view' product.pk %}">{{ product }}</a></td>
-			<td>{{ product.user }}</td>
+			<td>{{ product.user.get_full_name }}</td>
 		</tr>
 		{% empty %}
 		No requested products yet!

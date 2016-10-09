@@ -6,7 +6,7 @@
 			<div class="col-md-4">
 				{{ prescription.user.get_full_name }} <br/>
 				{{ prescription.created }} <br/>
-				<a href="/media/{{ prescription.image }}"><img src="/media/{{ prescription.thumbnail }}"/></a>
+				<a href="{% url 'backend:prescription-detail-view' prescription.pk %}"><img src="/media/{{ prescription.thumbnail }}"/></a>
 			</div>
 		</div>
 		{% empty %}

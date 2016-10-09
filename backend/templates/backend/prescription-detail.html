@@ -1,0 +1,18 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<div class="row">
+		<div class="col-md-6">
+			<img src="/media/{{ object.image }}"/>
+		</div>
+		<div class="col-md-6">
+			<p><b>{{ object.user.get_full_name }}</b></p>
+			<p>{{ address.0.addressinfo.name }}</p>
+			<p>{{ address.0.addressinfo.address_1 }}</p>
+			<p>{{ address.0.addressinfo.address_2 }}</p>
+			<p>{{ address.0.addressinfo.city }}</p>
+			<p>{{ address.0.addressinfo.zip }}</p>
+			<p>{{ address.0.addressinfo.country }}</p>
+		</div>
+	</div>
+{% endblock %}
