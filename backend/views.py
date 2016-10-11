@@ -133,6 +133,24 @@ class CategoryItemsListView(ListView):
         return super(CategoryItemsListView, self).dispatch(*args, **kwargs)
 
 
+class SubCategoryItemsListView(ListView):
+    model = Product
+    template_name = "backend/subcategory-items.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(SubCategoryItemsListView, self).get_context_data()
+        context['subcategory'] = SubCategory.objects.get(slug=self.kwargs['sub_slug'])
+        return context
+
+    def get_queryset(self):
+        subcategory = SubCategory.objects.get(slug=self.kwargs['sub_slug'])
+        return Product.objects.filter(subcategory=subcategory)
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(SubCategoryItemsListView, self).dispatch(*args, **kwargs)
+
+
 @staff_member_required
 def requested_products(request):
     requested_products = RequestedProduct.objects.all().order_by('-created')

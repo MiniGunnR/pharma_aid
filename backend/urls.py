@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^categories/$', views.categories, name='categories'),
     url(r'^categories/create/$', views.CategoryCreateView.as_view(), name='category-create-view'),
     url(r'^categories/(?P<slug>.*)/items/$', views.CategoryItemsListView.as_view(), name='category-items-list-view'),
+    url(r'^categories/(?P<slug>.*)/(?P<sub_slug>.*)/', views.SubCategoryItemsListView.as_view(), name='sub-category-items-list-view'),
 
     url(r'^requested/products/$', views.requested_products, name='requested_products'),
     url(r'^requested/products/(?P<pk>\d+)/details/$', views.RequestedProductDetailView.as_view(), name='requested-products-detail-view'),

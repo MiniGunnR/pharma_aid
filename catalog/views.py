@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
+from django.core import serializers
 
 import csv
 from django.conf import settings
@@ -16,9 +17,18 @@ def index(request):
     return HttpResponseRedirect('/category/medicine/')
 
 
+def more_items(request, category_slug):
+    c = get_object_or_404(Category, slug=category_slug)
+    products = c.product_set.all()[100:200]
+    response = serializers.serialize('json', products, fields=('name', 'price', 'slug'))
+    return HttpResponse(response, content_type="application/json")
+
+
 def show_category(request, category_slug):
     c = get_object_or_404(Category, slug=category_slug)
-    products = c.product_set.all()
+
+    products = c.product_set.all()[:100]
+
     page_title = c.name
     meta_keywords = c.meta_keywords
     meta_description = c.meta_description

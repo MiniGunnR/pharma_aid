@@ -2,6 +2,6 @@
 
 {% block main %}
 	{% for user in users %}
-		{{ user }} <br/>
+		<a href="#">{{ user.get_full_name }}</a> <br/>
 		{% endfor %}
 {% endblock %}

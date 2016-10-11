@@ -34,7 +34,6 @@
 	            </div>
 		    </a>
             <div class="list-item-details text-center">
-{#                <p><small>{{ item.power }}</small></p>#}
                 <p><b>Tk. {{ item.price }}</b></p>
             </div>
             <div class="list-item-button text-center" data-slug="{{ item.slug }}">
@@ -42,4 +41,8 @@
             </div>
         </div>
 	    {% endfor %}
+{% endblock %}
+
+{% block js %}
+	<script src="{% static 'js/catalog.js' %}"></script>
 {% endblock %}
