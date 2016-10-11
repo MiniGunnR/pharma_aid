@@ -19,7 +19,7 @@ def index(request):
 
 def more_items(request, category_slug):
     c = get_object_or_404(Category, slug=category_slug)
-    products = c.product_set.all()[500:]
+    products = c.product_set.all()[200:]
     response = serializers.serialize('json', products, fields=('name', 'price', 'slug'))
     return HttpResponse(response, content_type="application/json")
 
@@ -27,7 +27,7 @@ def more_items(request, category_slug):
 def show_category(request, category_slug):
     c = get_object_or_404(Category, slug=category_slug)
 
-    products = c.product_set.all()[:500]
+    products = c.product_set.all()[:200]
 
     page_title = c.name
     meta_keywords = c.meta_keywords
