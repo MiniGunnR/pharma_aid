@@ -65,7 +65,7 @@ def auto(request):
     for datum in data:
         category, created = Category.objects.get_or_create(name=datum[7])
         try:
-            subcategory, created = SubCategory.objects.get_or_create(name=datum[8])
+            subcategory, created = SubCategory.objects.get_or_create(name=datum[8], category=category)
         except IntegrityError:
             subcategory = ''
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
