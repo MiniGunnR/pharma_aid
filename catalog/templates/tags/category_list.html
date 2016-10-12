@@ -4,9 +4,11 @@
         <ul>
         {% if c.slug in request.path %}
         {% for s in c.subcategory_set.all %}
+	        {% if s.name != '' %}
 	        <li>
-		        <a href="#">{{ s.name }}</a>
+		        <a href="{{ s.get_absolute_url }}">{{ s.name }}</a>
 	        </li>
+	        {% endif %}
             {% endfor %}
         {% endif %}
         </ul>

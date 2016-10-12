@@ -5,8 +5,8 @@ from . import views
 urlpatterns = [
     url(r'^$', views.index, name='home'),
 
-    url(r'^category/(?P<category_slug>.*)/$', views.show_category, name='category'),
     url(r'^category/(?P<category_slug>.*)/(?P<subcategory_slug>.*)/$', views.show_subcategory, name='show_subcategory'),
+    url(r'^category/(?P<category_slug>.*)/$', views.show_category, name='category'),
 
     url(r'^more/items/(?P<category_slug>.*)/$', views.more_items, name='more_items'),
 

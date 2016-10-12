@@ -1,7 +1,7 @@
 {% extends "skeleton.html" %}
 {% load static %}
 
-{% block title-suffix %}{{ category_slug|capfirst }}{% endblock %}
+{% block title-suffix %}{{ subcategory_slug|capfirst }}{% endblock %}
 
 {% block sidebar %}
 	{% include "tags/category_list.html" %}

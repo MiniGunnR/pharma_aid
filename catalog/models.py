@@ -52,6 +52,10 @@ class SubCategory(TimeStamped):
         self.slug = slugify(self.name)
         super(SubCategory, self).save(*args, **kwargs)
 
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('catalog:show_subcategory', kwargs={ "category_slug": self.category.slug, "subcategory_slug": self.slug })
+
 
 class Manufacturer(TimeStamped):
     name = models.CharField(max_length=255)
