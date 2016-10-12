@@ -8,7 +8,7 @@ import csv
 from django.conf import settings
 from django.utils.text import slugify
 
-from .models import Category, Product, SubCategory
+from .models import Category, Product, SubCategory, Manufacturer
 
 
 def index(request):
@@ -61,9 +61,9 @@ def auto(request):
     file = open("{0}{1}{2}".format(settings.BASE_DIR, '/', '1.csv'))
     reader = csv.reader(file)
     data = list(reader)
-    # cat = Category.objects.get(slug='tablet')
     for datum in data:
-        category, created = Category.objects.get_or_create(name=datum[2])
-        prod = Product.objects.create(name=datum[0], price=datum[1], category=category)
-        # prod.categories.add(cat)
-    return HttpResponseRedirect('/')
+        category, created = Category.objects.get_or_create(name=datum[7])
+        subcategory, created = SubCategory.objects.get_or_create(name=datum[8])
+        manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
+        Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=datum[6], category=category, subcategory=subcategory)
+    return HttpResponse('/')
