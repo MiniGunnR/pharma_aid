@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.core import serializers
+from django.db import IntegrityError
 
 import csv
 from django.conf import settings
@@ -63,7 +64,10 @@ def auto(request):
     data = list(reader)
     for datum in data:
         category, created = Category.objects.get_or_create(name=datum[7])
-        subcategory, created = SubCategory.objects.get_or_create(name=datum[8])
+        try:
+            subcategory, created = SubCategory.objects.get_or_create(name=datum[8])
+        except IntegrityError:
+            subcategory = ''
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
         Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=datum[6], category=category, subcategory=subcategory)
     return HttpResponse('/')
