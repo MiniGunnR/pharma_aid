@@ -13,7 +13,7 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ['-created']
     search_fields = ['name', 'description', 'meta_keywords', 'meta_description']
     exclude = ('created', 'updated',)
-    prepopulated_fields = {'slug': ('name', 'dosage', 'power')}
+    prepopulated_fields = {'slug': ('name', 'dosage')}
 
 admin.site.register(Product, ProductAdmin)
 

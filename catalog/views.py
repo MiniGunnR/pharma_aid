@@ -9,7 +9,7 @@ import csv
 from django.conf import settings
 from django.utils.text import slugify
 
-from .models import Category, Product, SubCategory, Manufacturer
+from .models import Category, Product, SubCategory, Manufacturer, Dosage
 
 
 def index(request):
@@ -64,10 +64,21 @@ def auto(request):
     data = list(reader)
     for datum in data:
         category, created = Category.objects.get_or_create(name=datum[7])
+
         try:
             subcategory, created = SubCategory.objects.get_or_create(name=datum[8], category=category)
         except IntegrityError:
-            subcategory = ''
+            subcategory = None
+
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
-        Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=datum[6], category=category, subcategory=subcategory)
-    return HttpResponse('/')
+
+        try:
+            dosage, created = Dosage.objects.get_or_create(name=datum[6])
+        except IntegrityError:
+            dosage = None
+
+        try:
+            prod = Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+        except IntegrityError:
+            print prod
+    return HttpResponseRedirect('/')

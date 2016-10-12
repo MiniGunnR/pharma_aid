@@ -65,6 +65,18 @@ class Manufacturer(TimeStamped):
         super(Manufacturer, self).save(*args, **kwargs)
 
 
+class Dosage(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, unique=True)
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Dosage, self).save(*args, **kwargs)
+
+
 @deconstructible
 class UploadToPathAndRename(object):
 
@@ -84,50 +96,48 @@ class UploadToPathAndRename(object):
 
 class Product(TimeStamped):
     # each individual dosage assignment
-    TABLET = 1
-    CAPSULE = 2
-    SUPPOSITORY = 3
-    SYRUP = 4
-    SUSPENSION = 5
-    INJECTION_IV = 6
-    INJECTION_IM = 7
-    CONTRACEPTIVE = 8
-    SANITARY_NAPKIN = 9
-    CREAM = 10
-    OINTMENT = 11
-    BLANK = 12
+    # TABLET = 1
+    # CAPSULE = 2
+    # SUPPOSITORY = 3
+    # SYRUP = 4
+    # SUSPENSION = 5
+    # INJECTION_IV = 6
+    # INJECTION_IM = 7
+    # CONTRACEPTIVE = 8
+    # SANITARY_NAPKIN = 9
+    # CREAM = 10
+    # OINTMENT = 11
+    # BLANK = 12
 
     # set of possible dosage types
-    DOSAGE_TYPES = (
-        (TABLET, 'Tablet'),
-        (CAPSULE, 'Capsule'),
-        (SUPPOSITORY, 'Suppository'),
-        (SYRUP, 'Syrup'),
-        (SUSPENSION, 'Suspension'),
-        (INJECTION_IV, 'Injection (IV)'),
-        (INJECTION_IM, 'Injection (IM)'),
-        (CONTRACEPTIVE, 'Contraceptive'),
-        (SANITARY_NAPKIN, 'Sanitary Napkin'),
-        (CREAM, 'Cream'),
-        (OINTMENT, 'Ointment'),
-        (BLANK, ''),
-    )
+    # DOSAGE_TYPES = (
+    #     (TABLET, 'Tablet'),
+    #     (CAPSULE, 'Capsule'),
+    #     (SUPPOSITORY, 'Suppository'),
+    #     (SYRUP, 'Syrup'),
+    #     (SUSPENSION, 'Suspension'),
+    #     (INJECTION_IV, 'Injection (IV)'),
+    #     (INJECTION_IM, 'Injection (IM)'),
+    #     (CONTRACEPTIVE, 'Contraceptive'),
+    #     (SANITARY_NAPKIN, 'Sanitary Napkin'),
+    #     (CREAM, 'Cream'),
+    #     (OINTMENT, 'Ointment'),
+    #     (BLANK, ''),
+    # )
 
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, help_text='Unique value for product page URL, created from name.')
     generic = models.CharField(max_length=50, blank=True)
-    power = models.CharField(max_length=50, blank=True)
     manufacturer = models.ForeignKey(Manufacturer, blank=True, null=True)
-    sku = models.CharField(max_length=50, blank=True, help_text='Unique identifier for the product')
     price = models.DecimalField(max_digits=9, decimal_places=2)
     old_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
     is_active = models.BooleanField(default=True, help_text='Deselect this instead of deleting the product.')
-    unit = models.CharField(max_length=20, default='piece', help_text='Unit used to sell the product, e.g. 250 gm, bottle, etc.')
+    unit = models.CharField(max_length=20, default='Piece', help_text='Unit used to sell the product, e.g. 250 gm, bottle, etc.')
     description = models.TextField(blank=True, null=True)
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
     category = models.ForeignKey(Category)
-    subcategory = models.ForeignKey(SubCategory)
+    subcategory = models.ForeignKey(SubCategory, blank=True, null=True)
     related = models.ManyToManyField("self", blank=True)
 
     height = models.CharField(max_length=4, blank=True, null=True)
@@ -135,8 +145,9 @@ class Product(TimeStamped):
     image = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
     thumbnail = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
 
-    dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
-                                         default=TABLET)
+    # dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
+    #                                      default=TABLET)
+    dosage = models.ForeignKey(Dosage, blank=True, null=True)
 
     class Meta:
         db_table = 'products'
@@ -200,6 +211,6 @@ class Product(TimeStamped):
 
     def save(self, *args, **kwargs):
         # self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, self.power))
-        self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(random.random())))
+        self.slug = slugify("{0}-{1}".format(self.name, self.dosage))
         self.create_thumbnail()
         super(Product, self).save(*args, **kwargs)
