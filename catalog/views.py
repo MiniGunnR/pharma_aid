@@ -78,8 +78,7 @@ def auto(request):
         except IntegrityError:
             dosage = None
 
-        slug = slugify(datum[0], datum[6])
-        prod = Product.objects.get(slug=slug)
+        prod = Product.objects.get(name=datum[0])
         if not prod.exists():
             Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
     return HttpResponseRedirect('/')
