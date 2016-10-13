@@ -5,6 +5,7 @@ django-decorator-include==1.1
 future==0.15.2
 oauthlib==1.1.2
 Pillow==3.3.0
+python-openid==2.2.5
 python3-openid==3.0.10
 requests==2.10.0
 requests-oauthlib==0.6.2
