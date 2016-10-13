@@ -10,8 +10,8 @@ from utils.models import TimeStamped
 
 
 class Category(TimeStamped):
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, help_text='Unique value for product page URL, created from name.')
     description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
@@ -36,8 +36,8 @@ class Category(TimeStamped):
 
 class SubCategory(TimeStamped):
     category = models.ForeignKey(Category)
-    name = models.CharField(max_length=50)
-    slug = models.SlugField(max_length=50, unique=True, help_text='Unique value for product page URL, created from name.')
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True, help_text='Unique value for product page URL, created from name.')
     is_active = models.BooleanField(default=True)
 
     class Meta:
@@ -70,8 +70,8 @@ class Manufacturer(TimeStamped):
 
 
 class Dosage(models.Model):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=100, unique=True)
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
 
     def __unicode__(self):
         return self.name
@@ -131,12 +131,12 @@ class Product(TimeStamped):
 
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255, unique=True, help_text='Unique value for product page URL, created from name.')
-    generic = models.CharField(max_length=50, blank=True)
+    generic = models.CharField(max_length=255, blank=True)
     manufacturer = models.ForeignKey(Manufacturer, blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
     old_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
     is_active = models.BooleanField(default=True, help_text='Deselect this instead of deleting the product.')
-    unit = models.CharField(max_length=20, default='Piece', help_text='Unit used to sell the product, e.g. 250 gm, bottle, etc.')
+    unit = models.CharField(max_length=100, default='Piece', help_text='Unit used to sell the product, e.g. 250 gm, bottle, etc.')
     description = models.TextField(blank=True, null=True)
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
