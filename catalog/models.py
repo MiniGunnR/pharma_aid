@@ -129,8 +129,8 @@ class Product(TimeStamped):
     #     (BLANK, ''),
     # )
 
-    name = models.CharField(max_length=255)
-    slug = models.SlugField(max_length=255, unique=True, help_text='Unique value for product page URL, created from name.')
+    name = models.CharField(max_length=400)
+    slug = models.SlugField(max_length=400, unique=True, help_text='Unique value for product page URL, created from name.')
     generic = models.CharField(max_length=255, blank=True)
     manufacturer = models.ForeignKey(Manufacturer, blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
