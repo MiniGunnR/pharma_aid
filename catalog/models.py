@@ -214,6 +214,6 @@ class Product(TimeStamped):
         self.thumbnail.save('%s_thumbnail.%s'%(os.path.splitext(suf.name)[0],FILE_EXTENSION), suf, save=False)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("{0}-{1}".format(self.name, self.dosage))
+        self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, self.pk))
         self.create_thumbnail()
         super(Product, self).save(*args, **kwargs)
