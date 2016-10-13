@@ -79,7 +79,9 @@ def auto(request):
             dosage = None
 
         try:
-            Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+            prod = get_object_or_404(Product, name=str(datum[0]))
+            if not prod.exists():
+                Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
         except IntegrityError as e:
-            print 'duplicate'
+            print e
     return HttpResponseRedirect('/')
