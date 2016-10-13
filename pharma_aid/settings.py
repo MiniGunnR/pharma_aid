@@ -95,7 +95,7 @@ DATABASES = {
         'NAME': 'pharma',
         'USER': 'michel',
         'PASSWORD': 'michel123',
-        'HOST': '139.59.17.54',
+        'HOST': 'localhost',
         'PORT': '',
     }
 }
