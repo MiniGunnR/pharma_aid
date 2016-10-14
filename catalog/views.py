@@ -84,3 +84,4 @@ def auto(request):
             pass
 
     return HttpResponseRedirect('/')
+
