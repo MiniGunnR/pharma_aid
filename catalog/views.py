@@ -66,21 +66,21 @@ def auto(request):
     for datum in data:
         category, created = Category.objects.get_or_create(name=datum[7])
 
-        if datum[8] is not None:
+        try:
             subcategory, created = SubCategory.objects.get_or_create(name=datum[8], category=category)
-        else:
+        except IntegrityError as e:
             subcategory = None
 
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
 
-        if datum[6] is not None:
+        try:
             dosage, created = Dosage.objects.get_or_create(name=datum[6])
-        else:
+        except IntegrityError as e:
             dosage = None
 
         try:
-            prod = Product.objects.get(name=datum[0])
-        except Product.DoesNotExist:
             prod = Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+        except IntegrityError as e:
+            pass
 
     return HttpResponseRedirect('/')
