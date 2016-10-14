@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.core import serializers
@@ -66,18 +66,21 @@ def auto(request):
     for datum in data:
         category, created = Category.objects.get_or_create(name=datum[7])
 
-        try:
+        if datum[8] is not None:
             subcategory, created = SubCategory.objects.get_or_create(name=datum[8], category=category)
-        except IntegrityError:
+        else:
             subcategory = None
 
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
 
-        try:
+        if datum[6] is not None:
             dosage, created = Dosage.objects.get_or_create(name=datum[6])
-        except IntegrityError:
+        else:
             dosage = None
 
-        Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+        try:
+            prod = Product.objects.get(name=datum[0])
+        except Product.DoesNotExist:
+            prod = Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
 
     return HttpResponseRedirect('/')
