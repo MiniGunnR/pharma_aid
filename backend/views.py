@@ -49,7 +49,7 @@ class ItemUpdateView(UpdateView):
 
 class ItemCreateView(CreateView):
     model = Product
-    fields = ['name', 'generic', 'power', 'manufacturer', 'sku', 'price', 'is_active', 'unit', 'description', 'meta_keywords', 'meta_description', 'category', 'dosage']
+    fields = ['name', 'generic', 'manufacturer', 'price', 'is_active', 'unit', 'description', 'meta_keywords', 'meta_description', 'category', 'dosage']
     template_name = "backend/item-form.html"
     success_url = '/backend/items/'
 
