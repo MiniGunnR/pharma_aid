@@ -38,7 +38,7 @@ class ItemDetailView(DetailView):
 
 class ItemUpdateView(UpdateView):
     model = Product
-    fields = ['name', 'generic', 'power', 'manufacturer', 'sku', 'price', 'is_active', 'unit', 'description', 'meta_keywords', 'meta_description', 'category', 'dosage']
+    fields = ['name', 'generic', 'manufacturer', 'price', 'is_active', 'unit', 'description', 'meta_keywords', 'meta_description', 'category', 'dosage']
     template_name = "backend/item-form.html"
     success_url = '../../'
 

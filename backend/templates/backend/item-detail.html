@@ -2,7 +2,7 @@
 
 {% block main %}
 	<a href="{% url 'backend:item-update-view' object.slug %}" class="btn btn-danger">EDIT</a>
-	<h3>{{ object.display_name }}</h3>
+	<h3>{{ object }}</h3>
 	<h4>Generic: {{ object.generic }}</h4>
 	<h4>Category: {{ object.category }}</h4>
 	<h4>Dosage: {{ object.get_dosage_display }}</h4>
