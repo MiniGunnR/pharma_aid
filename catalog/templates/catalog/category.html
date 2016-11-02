@@ -24,15 +24,19 @@
 	    <div class="list-item">
             <div class="list-item-image text-center">
 	            {% if item.image %}
-	                <img src="/media/{{ item.thumbnail }}" style="position: relative;"/>
+	                <img src="/media/{{ item.thumbnail }}" style="position: relative; "/>
+	            {% else %}
+		            <img src="/media/img/default.jpg" style="position: relative;" height="130"/>
 	            {% endif %}
-	            <div class="text-center">{{ item.name }}</div>
             </div>
-		    <a href="{% url 'catalog:product' item.slug %}">
-	            <div class="list-item-details-button text-center">
-	                <b>DETAILS</b>
-	            </div>
-		    </a>
+	        <div class="text-center list-item-name">
+	            {{ item.name }}
+            </div>
+{#		    <a href="{% url 'catalog:product' item.slug %}">#}
+{#	            <div class="list-item-details-button text-center">#}
+{#	                <b>DETAILS</b>#}
+{#	            </div>#}
+{#		    </a>#}
             <div class="list-item-details text-center">
                 <p><b>Tk. {{ item.price }}</b></p>
             </div>

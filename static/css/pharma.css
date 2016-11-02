@@ -231,11 +231,16 @@ nav {
 }
 
 .list-item-image {
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
     width: 100%;
     height: 130px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+}
+
+.list-item-name {
+    position: relative;
+    height: 4em;
 }
 
 .list-item-details-button {
