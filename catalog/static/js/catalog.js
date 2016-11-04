@@ -1,7 +1,10 @@
 $(function() {
     $(window).scroll(function () {
 
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
+    var pathname = window.location.pathname;
+    console.log(pathname);
+
+    if (($(window).scrollTop() + $(window).height() == $(document).height()) && (pathname == '/category/medicine/')) {
         $.getJSON( "/more/items/medicine/", function(data) {
             for (var i = 0; i < data.length; i++) {
                 var obj = data[i];
@@ -27,4 +30,6 @@ $(function() {
         });
     }
     });
+
+
 });
