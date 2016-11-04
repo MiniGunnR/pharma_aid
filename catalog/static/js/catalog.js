@@ -2,7 +2,6 @@ $(function() {
     $(window).scroll(function () {
 
     var pathname = window.location.pathname;
-    console.log(pathname);
 
     if (($(window).scrollTop() + $(window).height() == $(document).height()) && (pathname == '/category/medicine/')) {
         $.getJSON( "/more/items/medicine/", function(data) {
