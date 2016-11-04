@@ -1,12 +1,20 @@
 {% for c in active_categories %}
     <li>
-	    <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+	    <a href="{{ c.get_absolute_url }}">
+		    {% if c.get_absolute_url == request.path %}<u>{% endif %}
+		    {{ c.name }}
+	        {% if c.get_absolute_url == request.path %}</u>{% endif %}
+	    </a>
         <ul>
         {% if c.slug in request.path %}
         {% for s in c.subcategory_set.all %}
 	        {% if s.name != '' %}
 	        <li>
-		        <a href="{{ s.get_absolute_url }}">{{ s.name }}</a>
+		        <a href="{{ s.get_absolute_url }}">
+			        {% if s.get_absolute_url == request.path %}<u>{% endif %}
+			        {{ s.name }}
+		            {% if s.get_absolute_url == request.path %}</u>{% endif %}
+		        </a>
 	        </li>
 	        {% endif %}
             {% endfor %}
