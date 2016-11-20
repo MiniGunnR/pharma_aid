@@ -1,7 +1,7 @@
 {% extends "admin_base.html" %}
 
 {% block main %}
-<form action="" method="post">{% csrf_token %}
+<form enctype="multipart/form-data" action="" method="post">{% csrf_token %}
 	<table class="table table-borderless">
     {{ form.as_table }}
 
