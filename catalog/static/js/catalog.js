@@ -15,7 +15,7 @@ $(function() {
                             </a>\
                         </div>\
                         \
-                        <div class='text-center' style='position: absolute; top: 0px;'>" + obj.fields.name + "</div> \
+                        <div class='text-center list-item-name'>" + obj.fields.name + "</div> \
                         \
                         <div class='list-item-details text-center'> \
                             <p><b>Tk. " + obj.fields.price + "</b></p> \
