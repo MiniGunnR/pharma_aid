@@ -87,8 +87,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'pharma_aid.wsgi.application'
 
 
-Database
-https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+# Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 DATABASES = {
     'default': {
