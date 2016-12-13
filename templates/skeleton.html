@@ -48,7 +48,7 @@
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Help</a></li>
+                <li><a href="{% url 'misc:faq' %}">Help</a></li>
 
 	            {% if user.is_authenticated %}
 					{% include "tags/right_menu.html" %}

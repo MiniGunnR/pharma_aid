@@ -1,0 +1,202 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}{{ page_title }}{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}{{ page_title }}{% endblock %}
+
+{% block heading %}
+	{{ page_title }}
+{% endblock %}
+
+{% block items %}
+	<ul class="nav nav-tabs">
+	  <li class="active"><a href="{% url 'misc:faq' %}">FAQ</a></li>
+	  <li><a href="{% url 'misc:our_story' %}">Our Story</a></li>
+	  <li><a href="{% url 'misc:store' %}">Store</a></li>
+	  <li><a href="{% url 'misc:contact_us' %}">Contact Us</a></li>
+	  <li><a href="{% url 'misc:terms_of_use' %}">Terms of Use</a></li>
+	</ul>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How does the site work?</b> <br/>
+			A. You browse the site or use our search engine to find your desired products. You then add them to your shopping bag and click on place order. You let us know your address, select a delivery time – and voila, you are done.  A Pharma AiD representative then delivers your order right to your home or office.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How much do deliveries cost?</b> <br/>
+			A. We offer free deliveries all over Dhaka city on orders of Tk. 200 or more. If the order value is less than Tk. 200, we charge a Tk. 40 delivery fee.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How can I contact you?</b> <br/>
+			A. You can always call 01836-007001 or mail us at pharmaaidltd@gmail.com.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How long do the deliveries take?</b> <br/>
+			A. We are serving with 2 Hour Delivery Service in Mirpur DOHS area. You can also specify a convenient time and we will send the products during that time.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What are your delivery hours?</b> <br/>
+			A. We deliver from 10 am to 10 pm every day. You can choose from available slots to find something that is convenient to you.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How do I know when my order is here?</b> <br/>
+			A. A Pharma AiD representative will call you as soon as they are at your house to let you know about your delivery.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How do I pay?</b> <br/>
+			A. We accept cash on delivery and we also have Bkash service. Don’t worry; our Pharma AiD representatives should always carry enough change.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. Do you serve my area?</b> <br/>
+			A. We are currently serving Mirpur DOHS area.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. I can’t find the product I am looking for. What do I do?</b> <br/>
+			A. We are always open to new suggestions and will add an item to our inventory just for you. You can call 01836-007001 to tell a Pharma Aid representative to source it for you or mail us at pharmaaidltd@gmail.com to add this item to the inventory.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. My order is wrong. What do I do?</b> <br/>
+			A. Immediately call 01836-007001 and let us know the problem.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What if the item is out of stock?</b> <br/>
+			A. We hold our own inventory, so we rarely run of out stock. However, we will try our best to source what you need. If we cannot find it, we will call you and let you know what substitutes are available.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What happens during a hartal?</b> <br/>
+			A. We work during hartals. That’s how dedicated we are.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. Why should we buy from you when I have a Pharmacy Store nearby?</b> <br/>
+			A. Well, that is up to you but you can also be a couch potato like our founders and have your items delivered to your house for free. Our prices are sometimes lower than that of major Pharmacies in the city. We also carry a larger variety than the average medicine store. So, there is really no reason to not buy from us.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What about the prices?</b> <br/>
+			A. Our prices are our own but we try our best to offer them to you at or below market prices. Our prices are the same as the local pharmacies and we are working hard to get them even lower! If you feel that any product is priced unfairly, please let us know.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How do you deliver?</b> <br/>
+			A. We have our own logistics. But if needed we are ready to deliver By foot. By rickshaw. By car. By bike, By truck. Our goal is to get all your products to you on time.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What is your policy on refunds?</b> <br/>
+			A. You may get a refund within seven (7) days on unopened or spoilt packaged products.  Please contact us at 01836-007001 if you want to return an item.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q.  Can I order over the phone?</b> <br/>
+			A. Absolutely. Our hotline is 01836-007001
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. What about quality?</b> <br/>
+			A. We try our best to source the best quality items for you but if you are dissatisfied, you can always send them back with the delivery person. If you forget to do that, you can call us within 3 days and we will replace the item for free.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. How are you sourcing your products?</b> <br/>
+			A. We have deals with Pharmaceutical Manufacturing Companies and importers.
+		</div>
+	</div>
+
+	<br/>
+
+	<div class="row">
+		<div class="col-md-11">
+			<b style="font-size: 1.1em;">Q. Should I tip the delivery representative?</b> <br/>
+			A. Tips are not required. But our delivery team members appreciate recognition for their hard work. Delivery representatives keep the entire tip amount.
+		</div>
+	</div>
+
+{% endblock %}

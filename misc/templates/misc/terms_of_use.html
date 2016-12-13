@@ -1,0 +1,74 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}{{ page_title }}{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}{{ page_title }}{% endblock %}
+
+{% block heading %}
+	{{ page_title }}
+{% endblock %}
+
+{% block items %}
+	<ul class="nav nav-tabs">
+	  <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
+	  <li><a href="{% url 'misc:our_story' %}">Our Story</a></li>
+	  <li><a href="{% url 'misc:store' %}">Store</a></li>
+	  <li><a href="{% url 'misc:contact_us' %}">Contact Us</a></li>
+	  <li class="active"><a href="{% url 'misc:terms_of_use' %}">Terms of Use</a></li>
+	</ul>
+
+	<div class="row">
+		<div class="col-md-11 text-justify">
+			<p>By using PharmaAiD.co (also referred to as Pharma AiD or “website”) you agree to these conditions. Please read them carefully.</p>
+
+			<h4>Communication</h4>
+			<p>When you use Pharma AiD, or contact us via phone or email, you consent to receive communication from us. You authorize us to communicate with you by posting disclosures on the site, by email or by phone.  Additionally any disclosures posted on the site, or sent to you by email fulfill the legal obligation of communication made in writing.</p>
+
+			<h4>Eligibility</h4>
+			<p>If you are a minor i.e. under the age of 18 years, you shall not register as a user of the PharmaAiD.co and shall not transact on or use the website. As a minor if you wish to use or transact on website, such use or transaction may be made by your legal guardian or parents on the website. Pharma AiD reserves the right to terminate your membership and / or refuse to provide you with access to the website if it is brought to Pharma AiD’s notice or if it is discovered that you are under the age of 18 years.</p>
+
+			<h4>Prescription:</h4>
+			<p>For purchasing prescription product customer must have to show the prescription to our delivery executives.</p>
+
+			<h4>Your Account and Responsibilities</h4>
+			<p>If you use the website, you will be responsible for maintaining the confidentiality of your username and password and you will be responsible for all activities that occur under your username. You agree that if you provide any information that is untrue, inaccurate, not current or incomplete or we have reasonable grounds to suspect that such information is untrue, inaccurate, not current or incomplete, or not in accordance with the this Terms of Use, we have the right to suspend or terminate your membership on the website.</p>
+
+			<h4>Charges</h4>
+			<p>Membership on the website is free for users. Pharma AiD does not charge any fee for browsing and buying on the website. Pharma AiD reserves the right to change its fee policy from time to time. In particular, Pharma AiD may at its sole discretion introduce new services and modify some or all of the existing services offered on the website. In such an event, Pharma AiD reserves the right to introduce fees for the new services offered or amend/introduce fees for existing services, as the case may be. Changes to the fee policy will be posted on the website and such changes will automatically become effective immediately after they are posted on the website.</p>
+
+			<h4>Copyright</h4>
+			<p>The material (including the content, and any other content, software or services) contained on Pharmaaid.co are the property of Pharma AiD, its subsidiaries, affiliates and/or third party licensors. No material on this site may be copied, reproduced, republished, installed, posted, transmitted, stored or distributed without written permission from Pharma AiD.
+			You may not use any “deep-link”, “page-scrape”, “robot”, “spider” or other automatic device, program, algorithm or methodology, or any similar or equivalent manual process, to access, acquire, copy or monitor any portion of the website or any content, or in any way reproduce or circumvent the navigational structure or presentation of the website or any content, to obtain or attempt to obtain any materials, documents or information through any means not purposely made available through the website. We reserve our right to bar any such activity.</p>
+
+			<h4>Cookies</h4>
+			<p>This site uses cookies, which means that you must have cookies enabled on your computer in order for all functionality on this site to work properly. A cookie is a small data file that is written to your hard drive when you visit certain Web sites. Cookie files contain certain information, such as a random number user ID that the site assigns to a visitor to track the pages visited. A cookie cannot read data off your hard disk or read cookie files created by other sites. Cookies, by themselves, cannot be used to find out the identity of any user.</p>
+
+			<h4>Product Descriptions</h4>
+			<p>Pharma AiD attempts to be as accurate as possible. However, Pharma Aid does not warrant that product descriptions or other content of any Pharma AiD is accurate, complete, reliable, current, or error-free. If a product offered by Pharma AiD itself is not as described, your sole remedy is to return it in unused condition.</p>
+
+			<h4>Pricing</h4>
+			<>Except where noted otherwise, the list price or suggested price displayed for products on Pharma AiD represents the full retail price listed on the product itself, suggested by the manufacturer or supplier, or estimated in accordance with standard industry practice; or the estimated retail value for a comparably featured item offered elsewhere. The list price or suggested price is a comparative price estimate and may or may not represent the prevailing price in every area on any particular day.
+			With respect to items sold by Pharma AiD, we cannot confirm the price of an item until you order. Despite our best efforts, a small number of the items in our catalog may be mispriced. If the correct price of an item sold by Pharma AiD is higher than our stated price, we will, at our discretion, either contact you for instructions before shipping or cancel your order and notify you of such cancellation.</p>
+
+			<h4>Return & Refund Policy</h4>
+			<p>A user may return any unopened or defective item within 7 days of receiving the item. Pharma AiD, at its own discretion, will refund the value of that item.</p>
+			<p>Following products may not be eligible for return or replacement:
+				<ul>
+					<li>Damages due to misuse of product</li>
+					<li>Incidental damage due to malfunctioning of product</li>
+					<li>Any consumable item which has been used/installed</li>
+					<li>Products with tampered or missing serial/UPC numbers</li>
+					<li>Any damage/defect which are not covered under the manufacturer's warranty</li>
+					<li>Any product that is returned without all original packaging and accessories, including the box, manufacturer's packaging if any, and all other items originally included with the product/s delivered</li>
+				</ul>
+
+			<h4>Modifications</h4>
+			<p>Pharma AiD reserves the right to modify these Terms and Conditions. Such modifications shall be effective immediately upon posting on Pharma AiD.co. You are responsible for the reviewing of such modifications. Your continued access or use of PharmaAiD.co shall be deemed your acceptance of the modified terms and conditions.</p>
+		</div>
+	</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}{{ page_title }}{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}{{ page_title }}{% endblock %}
+
+{% block heading %}
+	{{ page_title }}
+{% endblock %}
+
+{% block items %}
+	<ul class="nav nav-tabs">
+	  <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
+	  <li class="active"><a href="{% url 'misc:our_story' %}">Our Story</a></li>
+	  <li><a href="{% url 'misc:store' %}">Store</a></li>
+	  <li><a href="{% url 'misc:contact_us' %}">Contact Us</a></li>
+	  <li><a href="{% url 'misc:terms_of_use' %}">Terms of Use</a></li>
+	</ul>
+
+	<div class="row">
+		<div class="col-md-11 text-justify">
+			Pharma AiD is an online medicine chain store based on “Brick and Click” style. It has both physical storefront and online shop. It has started its business in March, 2015.
+We believe time is valuable to our fellow Dhaka residents, and that they should not have to waste hours in traffic and wait in line just to buy medicines. This is why Pharma Aid is delivering your desired medicine and other healthcare items at your door-step and at no additional cost.
+Pharma Aid is a work in progress, and we hope to get better over time. We are trying our best to improve our services. If you have ideas on how we can improve, we would love to hear from you.  Please do email us at <a href="mailto:pharmaaidltd@gmail.com">pharmaaidltd@gmail.com</a>
+		</div>
+	</div>
+
+{% endblock %}

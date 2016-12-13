@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^pages/', include('django.contrib.flatpages.urls')),
 
     url(r'^accounts/', include('allauth.urls')),
+
+    url(r'^misc/', include('misc.urls', namespace='misc')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,32 @@
+{% extends "skeleton.html" %}
+
+{% block title-suffix %}{{ page_title }}{% endblock %}
+
+{% block sidebar %}
+	{% include "tags/category_list.html" %}
+{% endblock %}
+
+{% block breadcrumb-heading %}{{ page_title }}{% endblock %}
+
+{% block heading %}
+	{{ page_title }}
+{% endblock %}
+
+{% block items %}
+	<ul class="nav nav-tabs">
+	  <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
+	  <li><a href="{% url 'misc:our_story' %}">Our Story</a></li>
+	  <li><a href="{% url 'misc:store' %}">Store</a></li>
+	  <li class="active"><a href="{% url 'misc:contact_us' %}">Contact Us</a></li>
+	  <li><a href="{% url 'misc:terms_of_use' %}">Terms of Use</a></li>
+	</ul>
+
+	<div class="row">
+		<div class="col-md-12">
+			<p>Feel free to contact us anytime at 01836-007001</p>
+
+			<p>Or if you prefer, you can drop us a note using the form below. You'll always get a response from a real person — with a real name — within 48 hours.</p>
+		</div>
+	</div>
+
+{% endblock %}
