@@ -30,6 +30,10 @@ nav {
     box-shadow: inset 0px 3px 0px #428BCA;
 }
 
+.nav2 {
+    display: none;
+}
+
 #sidebar {
     position: fixed;
     width: 200px;
@@ -75,10 +79,6 @@ nav {
     background-color: whitesmoke;
     text-decoration: none;
 }
-
-
-
-
 
 #bag {
     background-color: rgba(245, 245, 245, 0.7);
@@ -431,4 +431,65 @@ nav {
 
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
     border: none;
+}
+
+/* NAVBAR STOP COLLAPSE */
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
+}
+/* END */
+
+@media (max-width: 880px) {
+    .nav1 {
+        display: none;
+    }
+
+    .nav2 {
+        display: inherit;
+    }
+
+    .nav-link {
+        padding: 0px 15px;
+    }
+
+    #sidebar {
+        display: none;
+        width: 100%;
+    }
+
+    #main {
+        margin-top: 100px;
+        margin-left: 10px;
+    }
+
+    #big-bag {
+        top: 100px;
+        width: 100%;
+    }
+
+    #big-bag-body {
+        width: 100%
+    }
+
+
+    #search_form {
+        margin-left: 10px;
+        width: 500px;
+    }
+
+    #search_box {
+        width: 70%;
+    }
 }

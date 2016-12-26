@@ -26,27 +26,56 @@
     </head>
     <body>
 
-    <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="nav2" style="background-color: #00C1F7; position: absolute; top: 0px; width: 100%; height: 50px;">
+	    <p style="line-height: 50px;">
+		    <a href="#" class="nav-link" style="font-size: 1.3em; font-family: Tahoma;">
+		        <b><i>Pharma AiD</i></b>
+		    </a>
+
+		    <a href="#" class="nav-link" style="float: right;">Login</a>
+		    <a href="#" class="nav-link" style="float: right;">Help</a>
+	    </p>
+    </div>
+
+    <div class="nav2" style="background-color: #00C1F7; position: absolute; top: 50px; width: 100%; height: 50px; line-height: 50px; background-color: coral;">
+        <a href="#" class="nav-link"><i class="fa fa-rss"></i></a>
+
+        <form id="search_form" class="" method="GET" action="/search/">
+{#            <div class="form-group">#}
+                <input type="text" id="search_box" class="form-control" name="search" placeholder="Search" value="">
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+{#            </div>#}
+        </form>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top nav1">
         <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+{#          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+{#            <span class="sr-only">Toggle navigation</span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#            <span class="icon-bar"></span>#}
+{#          </button>#}
           <a class="navbar-brand" href="/" style="font-family: Tahoma; color: black;"><b><i>Pharma AiD</i></b></a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+{#        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
+          <div>
             <form id="search_form" class="navbar-form navbar-left" method="GET" action="/search/">
                 <div class="form-group">
                     <input type="text" id="search_box" class="form-control" name="search" placeholder="Search" value="{% block srch_val %}{% endblock %}">
                 </div>
                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
             </form>
+{#            <div class="input-group">#}
+{#		      <input type="text" class="form-control" placeholder="Search for...">#}
+{#		      <span class="input-group-btn">#}
+{#		        <button class="btn btn-secondary" type="button">Go!</button>#}
+{#		      </span>#}
+{#		    </div>#}
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="{% url 'misc:faq' %}">Help</a></li>
 
