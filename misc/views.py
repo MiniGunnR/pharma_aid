@@ -37,10 +37,10 @@ def contact_us(request):
 
 def send_anon_mail(request):
     if request.method == "POST":
-        # with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
-        #     f.write(str(request.POST.get('message', '')))
-        # call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
-        return HttpResponse('success')
+        with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
+            f.write(str(request.POST.get('message', '')))
+        call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
+        return HttpResponseRedirect('/misc/contact/us/')
 
 
 def terms_of_use(request):
