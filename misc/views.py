@@ -19,7 +19,7 @@ def store(request):
 
 def contact_us(request):
     if request.method == "POST":
-        os.system(request.POST['message'] > '/home/michel/pharma_aid/misc/mail/mail.txt')
+        os.system(request.POST.get('message') > '/home/michel/pharma_aid/misc/mail/mail.txt')
         os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
     page_title = "Contact Us"
     if request.user.is_authenticated():
