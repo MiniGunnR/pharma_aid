@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from subprocess import call
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 
 
 def faq(request):
@@ -40,7 +40,7 @@ def send_anon_mail(request):
         # with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
         #     f.write(str(request.POST.get('message', '')))
         # call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
-        return HttpResponseRedirect('/misc/contact/us/')
+        return HttpResponse('success')
 
 
 def terms_of_use(request):
