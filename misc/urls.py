@@ -9,4 +9,6 @@ urlpatterns = [
     url(r'^store/$', views.store, name='store'),
     url(r'^contact/us/$', views.contact_us, name='contact_us'),
     url(r'^terms/of/use/$', views.terms_of_use, name='terms_of_use'),
+
+    url(r'^contact/us/send/mail/$', views.send_mail, name='send_mail'),
 ]
