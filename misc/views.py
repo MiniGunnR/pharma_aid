@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import os
+from subprocess import call
 
 
 def faq(request):
@@ -20,8 +20,9 @@ def store(request):
 def contact_us(request):
     if request.method == "POST":
         data = request.POST
-        os.system('echo %s > /home/michel/pharma_aid/misc/mail/mail.txt' % data['message'])
-        os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
+        with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
+            f.write(data['message'])
+        call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
     page_title = "Contact Us"
     if request.user.is_authenticated():
         name = request.user.get_full_name()
