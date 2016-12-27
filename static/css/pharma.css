@@ -510,8 +510,4 @@ nav {
     #banner {
         display: none;
     }
-
-    #mobile_right_menu {
-        display: inherit;
-    }
 }
