@@ -20,5 +20,11 @@ $(function() {
 
         $("#sidebar").toggle().css({"z-index": "20"});
     });
+
+    $("#mobile_menu").on('click', function(e) {
+        e.preventDefault();
+
+        $("#mobile_right_menu").toggle();
+    });
 });
 

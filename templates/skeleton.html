@@ -33,7 +33,7 @@
 		    </a>
 
 		    {% if user.is_authenticated %}
-		        <a href="#" class="nav-link" style="float:right;">Menu</a>
+		        <a href="#" id="mobile_menu" class="nav-link" style="float:right;">Menu</a>
 		    {% else %}
 		        <a href="{% url 'account_login' %}" class="nav-link" style="float: right;">Login</a>
 		    {% endif %}
@@ -71,7 +71,7 @@
 
         <!-- Collect the nav links, forms, and other content for toggling -->
 {#        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">#}
-          <div>
+        <div>
             <form id="search_form" class="navbar-form navbar-left" method="GET" action="/search/">
                 <div class="form-group">
                     <input type="text" id="search_box" class="form-control" name="search" placeholder="Search" value="{% block srch_val %}{% endblock %}">
@@ -103,6 +103,22 @@
 	        {% endblock %}
         </ul>
     </div>
+
+    {% if user.is_authenticated %}
+    <div id="mobile_right_menu">
+	    <ul class="nav nav-pills nav-stacked">
+			<li><a href="{% url 'order:upload-prescription' %}">Upload a Prescription</a></li>
+	        <li class="disabled"><a href="#">Monthly Order</a></li>
+	        <li><a href="{% url 'order:request-product' %}">Request a Product</a></li>
+	        <li><a href="{% url 'order:past-orders' %}">Past Orders</a></li>
+	        <li><a href="{% url 'my_account:my-addresses' %}">My Addresses</a></li>
+	        <li><a href="{% url 'my_account:profile' %}">Profile</a></li>
+	        <li><a href="/accounts/password/change/">Change Password</a></li>
+	        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+		</ul>
+    </div>
+    {% endif %}
+
     <main id="main">
         <div id="heading">
             <div id="breadcrumb">
