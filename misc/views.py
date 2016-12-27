@@ -35,7 +35,7 @@ def contact_us(request):
                                                      })
 
 
-def send_mail(request):
+def send_anon_mail(request):
     if request.method == "POST":
         # with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
         #     f.write(str(request.POST.get('message', '')))
