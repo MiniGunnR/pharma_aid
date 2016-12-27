@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from subprocess import call
+from django.http import HttpResponseRedirect
 
 
 def faq(request):
@@ -18,10 +19,6 @@ def store(request):
 
 
 def contact_us(request):
-    if request.method == "POST":
-        with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
-            f.write(str(request.POST.get('message', '')))
-        call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
     page_title = "Contact Us"
     if request.user.is_authenticated():
         name = request.user.get_full_name()
@@ -36,6 +33,14 @@ def contact_us(request):
                                                      "phone": phone,
                                                      "email": email
                                                      })
+
+
+def send_mail(request):
+    if request.method == "POST":
+        with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
+            f.write(str(request.POST.get('message', '')))
+        call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
+        return HttpResponseRedirect('/misc/contact/us/')
 
 
 def terms_of_use(request):
