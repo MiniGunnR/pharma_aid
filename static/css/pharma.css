@@ -458,6 +458,9 @@ nav {
 
     .nav2 {
         display: inherit;
+        position: fixed;
+        background-color: #00C1F7;
+        z-index: 10;
     }
 
     .nav-link {
@@ -485,11 +488,17 @@ nav {
 
 
     #search_form {
+        position: static;
         margin-left: 10px;
-        width: 500px;
+        margin-right: 10px;
     }
 
     #search_box {
-        width: 70%;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    #banner {
+        display: none;
     }
 }

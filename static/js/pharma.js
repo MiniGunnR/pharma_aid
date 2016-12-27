@@ -14,5 +14,11 @@ $(function() {
         $("#main").css({'padding-right': 10});
         $("#bag").removeAttr('hidden');
     });
+
+    $("#category_menu").on('click', function(e) {
+        e.preventDefault();
+
+        $("#sidebar").toggle().css({"z-index": "20"});
+    });
 });
 
