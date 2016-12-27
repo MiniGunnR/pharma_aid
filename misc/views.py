@@ -37,9 +37,9 @@ def contact_us(request):
 
 def send_mail(request):
     if request.method == "POST":
-        with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
-            f.write(str(request.POST.get('message', '')))
-        call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
+        # with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
+        #     f.write(str(request.POST.get('message', '')))
+        # call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
         return HttpResponseRedirect('/misc/contact/us/')
 
 
