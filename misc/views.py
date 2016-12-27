@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import os
 
 
 def faq(request):
@@ -17,8 +18,23 @@ def store(request):
 
 
 def contact_us(request):
+    if request.method == "POST":
+        os.system(request.POST['message'] > '/home/michel/pharma_aid/misc/mail/mail.txt')
+        os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
     page_title = "Contact Us"
-    return render(request, "misc/contact_us.html", { "page_title": page_title })
+    if request.user.is_authenticated():
+        name = request.user.get_full_name()
+        phone = request.user.mobile
+        email = request.user.email
+    else:
+        name = ''
+        phone = ''
+        email = ''
+    return render(request, "misc/contact_us.html", { "page_title": page_title,
+                                                     "name": name,
+                                                     "phone": phone,
+                                                     "email": email
+                                                     })
 
 
 def terms_of_use(request):

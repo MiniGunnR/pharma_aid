@@ -29,4 +29,18 @@
 		</div>
 	</div>
 
+	<div class="row">
+		<div class="col-sm-6">
+			<form method="post" action=".">
+				{% csrf_token %}
+				<input type="text" name="name" id="name" placeholder="Name" value="{{ name }}"/> <br/>
+				<input type="text" name="email" id="email" placeholder="Email" value="{{ email }}"/> <br/>
+				<input type="text" name="phone" id="phone" placeholder="Phone" value="{{ phone }}"/> <br/>
+				<textarea type="text" name="message" id="message" placeholder="Message"></textarea> <br/>
+
+				<input type="submit" value="Send"/>
+			</form>
+		</div>
+	</div>
+
 {% endblock %}
