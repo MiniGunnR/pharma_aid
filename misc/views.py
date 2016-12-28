@@ -40,8 +40,8 @@ def send_anon_mail(request):
         with open ('/home/michel/pharma_aid/misc/mail/mail.txt', 'w') as f:
             f.write(str(request.POST.get('message', '')))
         call('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < /home/michel/pharma_aid/misc/mail/mail.txt')
-        return HttpResponseRedirect('/misc/contact/us/')
-
+        # return HttpResponseRedirect('/misc/contact/us/')
+        return HttpResponse('OK')
 
 def terms_of_use(request):
     page_title = "Terms of Use"
