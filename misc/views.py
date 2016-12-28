@@ -46,7 +46,9 @@ def send_anon_mail(request):
             f.write('\n')
             f.write('Phone - ' + request.POST.get('phone'))
             f.write('\n')
-            f.write('Message - ' + str(request.POST.get('message', '')))
+            msg = str(request.POST.get('message', '')).replace('\015', '\n')
+            f.write('Message - ' + msg)
+            f.close()
         os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < %s' % file)
         return HttpResponseRedirect('/misc/contact/us/')
 
