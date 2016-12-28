@@ -33,10 +33,10 @@
 		<div class="col-sm-6">
 			<form method="post" action="/misc/send/mail/">
 				{% csrf_token %}
-				<input type="text" name="name" id="name" placeholder="Name" value="{{ name }}"/> <br/>
-				<input type="text" name="email" id="email" placeholder="Email" value="{{ email }}"/> <br/>
-				<input type="text" name="phone" id="phone" placeholder="Phone" value="{{ phone }}"/> <br/>
-				<textarea name="message" id="message" placeholder="Message"></textarea> <br/>
+				<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="{{ name }}"/> <br/>
+				<input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{ email }}"/> <br/>
+				<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone" value="{{ phone }}"/> <br/>
+				<textarea class="form-control" rows="10" cols="40" name="message" id="message" placeholder="Message"></textarea> <br/>
 
 				<input type="submit" value="Send"/>
 			</form>
