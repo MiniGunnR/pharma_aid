@@ -40,8 +40,14 @@ def send_anon_mail(request):
     if request.method == "POST":
         file = os.path.join(settings.BASE_DIR, 'misc/mail/', 'mail.txt')
         with open (file, 'w') as f:
+            f.write(str(request.POST.get('name')))
+            f.write('\n')
+            f.write(str(request.POST.get('email')))
+            f.write('\n')
+            f.write(request.POST.get('phone'))
+            f.write('\n')
             f.write(str(request.POST.get('message', '')))
-        os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com -r %s < %s' % (request.POST.get('email'), file))
+        os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < %s' % file)
         return HttpResponseRedirect('/misc/contact/us/')
 
 
