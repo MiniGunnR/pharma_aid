@@ -48,7 +48,7 @@ def send_anon_mail(request):
             f.write('\n')
             f.write('= = = = = = = = = =\n')
             msg = str(request.POST.get('message', '')).replace('\015', '\n')
-            f.write('Message - ' + msg)
+            f.write(msg)
             f.write('\n= = = = = = = = = =')
             f.close()
         os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < %s' % file)
