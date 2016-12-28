@@ -1,5 +1,4 @@
 from django.shortcuts import render
-from subprocess import call
 from django.http import HttpResponseRedirect, HttpResponse
 import os
 from django.conf import settings
@@ -43,8 +42,7 @@ def send_anon_mail(request):
         with open (file, 'w') as f:
             f.write(str(request.POST.get('message', '')))
         os.system('mail -s "Email from a Customer" hasan.mohaiminul@gmail.com < %s' % file)
-        # return HttpResponseRedirect('/misc/contact/us/')
-        return HttpResponse(file)
+        return HttpResponseRedirect('/misc/contact/us/')
 
 
 def terms_of_use(request):
