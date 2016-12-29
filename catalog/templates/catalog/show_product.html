@@ -14,6 +14,12 @@
 
 {% block items %}
 	<h4>{{ product.name }}</h4>
+
+	<div class="row">
+		<a href="#" class="btn btn-primary">Add to Bag</a>
+		<a href="#" class="btn btn-primary">Add to Monthly Order</a>
+	</div>
+
 	<div class="row">
 		<div class="col-sm-4">
 			<img src="/media/{{ product.image }}" width="100%"/>
@@ -21,7 +27,7 @@
 		<div class="col-sm-6">
 			<p>{{ product.name }}</p>
 			<p>{{ product.generic }}</p>
-			<p>{{ product.price }}</p>
+			<p>Tk. {{ product.price }}</p>
 			<p>{{ product.manufacturer }}</p>
 			<p>{{ product.dosage }}</p>
 		</div>
