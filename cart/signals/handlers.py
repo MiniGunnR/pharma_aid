@@ -1,7 +1,6 @@
 from django.db.models.signals import post_save, post_delete
 from allauth.account.signals import user_logged_in
 from collections import Counter
-from decimal import Decimal
 
 from django.dispatch import receiver
 from cart.models import Cart, CartItem

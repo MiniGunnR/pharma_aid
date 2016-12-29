@@ -98,3 +98,7 @@ def delete_from_cart(request, slug):
         total_taka = cart.total
 
         return JsonResponse({"item_id": id, "msg": "Deleted from cart", "total_item": total_item, "total_taka": total_taka})
+
+
+def monthly_order(request):
+    return render(request, "cart/monthly-order.html")

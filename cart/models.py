@@ -64,6 +64,30 @@ class CartItem(TimeStamped):
         self.quantity = self.quantity + int(quantity)
         self.save()
 
-    def __str__(self):
+    def __unicode__(self):
         return "{0} - {1}".format(self.cart_id, self.product.name)
 
+
+class Monthly(TimeStamped):
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
+    product = models.ForeignKey('catalog.Product', unique=False)
+    quantity = models.PositiveIntegerField(default=1)
+
+    def total(self):
+        return self.quantity * self.product.price
+
+    def name(self):
+        return self.product.name
+
+    def price(self):
+        return self.product.price
+
+    def get_absolute_url(self):
+        return self.product.get_absolute_url()
+
+    def augment_quantity(self, quantity):
+        self.quantity = self.quantity + int(quantity)
+        self.save()
+
+    def __unicode__(self):
+        return self.owner.name
