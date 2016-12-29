@@ -13,5 +13,17 @@
 {% endblock %}
 
 {% block items %}
-	<h4>{{ product }}</h4>
+	<h4>{{ product.name }}</h4>
+	<div class="row">
+		<div class="col-sm-6">
+			<img src="{{ product.image }}"/>
+		</div>
+		<div class="col-sm-6">
+			<p>{{ product.name }}</p>
+			<p>{{ product.generic }}</p>
+			<p>{{ product.price }}</p>
+			<p>{{ product.manufacturer }}</p>
+			<p>{{ product.dosage }}</p>
+		</div>
+	</div>
 {% endblock %}
