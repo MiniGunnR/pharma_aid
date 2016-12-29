@@ -24,6 +24,8 @@
 			<td>{{ obj.quantity }}</td>
 			<td>{{ obj.total }}</td>
 		</tr>
+		{% empty %}
+			<h4>No monthly order set yet!</h4>
 		{% endfor %}
 	</table>
 {% endblock %}
