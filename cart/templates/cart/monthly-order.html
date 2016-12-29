@@ -13,5 +13,17 @@
 {% endblock %}
 
 {% block items %}
-	<h4>Something...</h4>
+	<h4>Monthly Order</h4>
+
+	<table class="table">
+
+	{% for obj in objs %}
+		<tr>
+			<td>{{ obj.name }}</td>
+			<td>{{ obj.price }}</td>
+			<td>{{ obj.quantity }}</td>
+			<td>{{ obj.total }}</td>
+		</tr>
+		{% endfor %}
+	</table>
 {% endblock %}

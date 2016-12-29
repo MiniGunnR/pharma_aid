@@ -6,7 +6,7 @@ import string
 from django.db import transaction
 
 
-from .models import Cart, CartItem
+from .models import Cart, CartItem, Monthly
 from catalog.models import Product
 
 
@@ -101,4 +101,5 @@ def delete_from_cart(request, slug):
 
 
 def monthly_order(request):
-    return render(request, "cart/monthly-order.html")
+    objs = Monthly.objects.filter(owner=request.user)
+    return render(request, "cart/monthly-order.html", { "objs": objs })
