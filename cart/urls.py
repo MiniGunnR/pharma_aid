@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^delete/(?P<slug>.*)/', views.delete_from_cart, name='delete-from-cart'),
 
     url(r'^monthly/order/$', views.monthly_order, name='monthly-order'),
+    url(r'^add/to/monthly/(?P<slug>.*)/$', views.add_to_monthly, name='add-to-monthly'),
 ]

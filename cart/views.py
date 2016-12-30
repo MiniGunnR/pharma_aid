@@ -103,3 +103,20 @@ def delete_from_cart(request, slug):
 def monthly_order(request):
     objs = Monthly.objects.filter(owner=request.user)
     return render(request, "cart/monthly-order.html", { "objs": objs })
+
+
+@transaction.atomic
+def add_to_monthly(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    try:
+        item = Monthly.objects.get(owner=request.user, product=product)
+    except Monthly.DoesNotExist:
+        item = Monthly.objects.create(owner=request.user, product=product)
+        quantity = item.quantity
+        total = item.total()
+    else:
+        item.augment_quantity(1)
+        quantity = item.quantity
+        total = item.total()
+    return JsonResponse({"item": item.name(), "quantity": quantity, "total": total})
