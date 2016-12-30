@@ -150,7 +150,7 @@ $(function() {
         });
     });
 
-    $(document).on("click", ".add-to-monthly", function(e) {
+    $(document).on("click", ".add-to-monthly-btn", function(e) {
         e.preventDefault();
 
         var slug = $(this).attr('data-slug');
@@ -162,6 +162,42 @@ $(function() {
 
             success: function(data) {
                 $("#added_msg").toggle().fadeOut(800);
+            }
+        });
+    });
+
+    $(document).on("click", ".add-to-monthly", function(e) {
+        e.preventDefault();
+
+        var slug = $(this).attr('data-slug');
+        var url = $(this).attr('href');
+
+        $.ajax({
+            type: "GET",
+            url: url,
+
+            success: function(data) {
+                $("#" + data.id + "_quantity").text(data.quantity);
+                $("#" + data.id + "_total").text(data.total);
+                $("#all_total").text(data.all_total);
+            }
+        });
+    });
+
+    $(document).on("click", ".remove-from-monthly", function(e) {
+        e.preventDefault();
+
+        var slug = $(this).attr('data-slug');
+        var url = $(this).attr('href');
+
+        $.ajax({
+            type: "GET",
+            url: url,
+
+            success: function(data) {
+                $("#" + data.id + "_quantity").text(data.quantity);
+                $("#" + data.id + "_total").text(data.total);
+                $("#all_total").text(data.all_total);
             }
         });
     });

@@ -4,6 +4,7 @@ import random
 from django.shortcuts import render
 import string
 from django.db import transaction
+from django.db.models import Sum, F
 
 
 from .models import Cart, CartItem, Monthly
@@ -102,7 +103,8 @@ def delete_from_cart(request, slug):
 
 def monthly_order(request):
     objs = Monthly.objects.filter(owner=request.user)
-    return render(request, "cart/monthly-order.html", { "objs": objs })
+    total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    return render(request, "cart/monthly-order.html", { "objs": objs, "total": total })
 
 
 @transaction.atomic
@@ -119,4 +121,42 @@ def add_to_monthly(request, slug):
         item.augment_quantity(1)
         quantity = item.quantity
         total = item.total()
-    return JsonResponse({"quantity": quantity, "total": total})
+    objs = Monthly.objects.filter(owner=request.user)
+    all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
+
+
+@transaction.atomic
+def remove_from_monthly(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    try:
+        item = Monthly.objects.get(owner=request.user, product=product)
+    except Monthly.DoesNotExist:
+        return JsonResponse({"message": "Item does not exist!"})
+    else:
+        if item.quantity > 1:
+            item.augment_quantity(-1)
+            quantity = item.quantity
+            total = item.total()
+            objs = Monthly.objects.filter(owner=request.user)
+            all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+        else:
+            pass
+        return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
+
+
+@transaction.atomic
+def delete_from_monthly(request, slug):
+    product = get_object_or_404(Product, slug=slug)
+
+    try:
+        item = Monthly.objects.get(owner=request.user, product=product)
+    except Monthly.DoesNotExist:
+        pass
+    else:
+        item.delete()
+
+    objs = Monthly.objects.filter(owner=request.user)
+    all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    return JsonResponse({"id": item.id, "all_total": all_total})
