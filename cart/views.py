@@ -119,4 +119,4 @@ def add_to_monthly(request, slug):
         item.augment_quantity(1)
         quantity = item.quantity
         total = item.total()
-    return JsonResponse({"item": item.name(), "quantity": quantity, "total": total})
+    return JsonResponse({"quantity": quantity, "total": total})
