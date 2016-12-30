@@ -149,4 +149,20 @@ $(function() {
             }
         });
     });
+
+    $(document).on("click", ".add-to-monthly", function(e) {
+        e.preventDefault();
+
+        var slug = $(this).attr('data-slug');
+        var url = '/cart/add/to/monthly/' + slug + '/';
+
+        $.ajax({
+            type: "GET",
+            url: url,
+
+            success: function(data) {
+                alert("Hello! I am an alert box!!");
+            }
+        });
+    });
 });
