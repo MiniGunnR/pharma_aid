@@ -161,7 +161,7 @@ $(function() {
             url: url,
 
             success: function(data) {
-                $("#added_msg").toggle().fadeOut(400);
+                $("#added_msg").toggle().fadeOut(800);
             }
         });
     });
