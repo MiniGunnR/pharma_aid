@@ -161,7 +161,7 @@ $(function() {
             url: url,
 
             success: function(data) {
-                alert("Hello! I am an alert box!!");
+                $("#added_msg").toggle().fadeOut(400);
             }
         });
     });
