@@ -204,12 +204,12 @@ class Product(TimeStamped):
             DJANGO_TYPE = 'image/png'
         # End of content_type alternative code
 
-        if DJANGO_TYPE == 'image/jpeg':
-            PIL_TYPE = 'jpeg'
-            FILE_EXTENSION = 'jpg'
-        elif DJANGO_TYPE == 'image/png':
-            PIL_TYPE = 'png'
-            FILE_EXTENSION = 'png'
+        # if DJANGO_TYPE == 'image/jpeg':
+        #     PIL_TYPE = 'jpeg'
+        #     FILE_EXTENSION = 'jpg'
+        # elif DJANGO_TYPE == 'image/png':
+        #     PIL_TYPE = 'png'
+        #     FILE_EXTENSION = 'png'
 
         image = Image.open(StringIO(self.image.read()))
 
