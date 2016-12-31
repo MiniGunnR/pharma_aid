@@ -14,9 +14,12 @@
 {% endblock %}
 
 {% block banner %}
-	{% if request.path == '/category/medicine/' %}
-		<img class="banner-img" src="{% static 'img/banner.jpg' %}"/>
-	{% endif %}
+{#	{% if request.path == '/category/medicine/' %}#}
+{#		<img class="banner-img" src="{% static 'img/banner.jpg' %}"/>#}
+{#	{% endif %}#}
+    {% if c.image %}
+        <img class="banner-img" src="/media/{{ c.image }}"/>
+        {% endif %}
 {% endblock %}
 
 {% block items %}

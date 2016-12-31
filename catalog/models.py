@@ -16,6 +16,7 @@ class Category(TimeStamped):
     is_active = models.BooleanField(default=True)
     meta_keywords = models.CharField("Meta Keywords", max_length=255, blank=True, help_text='Comma-delimited set of SEO keywords for meta tag.')
     meta_description = models.CharField("Meta Description", max_length=255, blank=True, help_text='Content for description meta tag.')
+    image = models.ImageField(upload_to='img/category', blank=True)
 
     class Meta:
         db_table = 'categories'
@@ -134,7 +135,7 @@ class Product(TimeStamped):
     generic = models.CharField(max_length=400, blank=True)
     manufacturer = models.ForeignKey(Manufacturer, blank=True, null=True)
     price = models.DecimalField(max_digits=9, decimal_places=2)
-    old_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
+    discount_price = models.DecimalField(max_digits=9, decimal_places=2, blank=True, default=0.00)
     is_active = models.BooleanField(default=True, help_text='Deselect this instead of deleting the product.')
     unit = models.CharField(max_length=100, default='Piece', help_text='Unit used to sell the product, e.g. 250 gm, bottle, etc.')
     description = models.TextField(blank=True, null=True)
@@ -165,8 +166,8 @@ class Product(TimeStamped):
         return ('catalog_product', (), { 'product_slug': self.slug })
 
     def sale_price(self):
-        if self.old_price > 0:
-            return "%s <small><strike>Tk. %s</strike></small>" % (self.old_price, self.price)
+        if self.discount_price > 0:
+            return "%s <small><strike>Tk. %s</strike></small>" % (self.discount_price, self.price)
         else:
             return self.price
 
