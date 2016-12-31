@@ -185,7 +185,7 @@ class Product(TimeStamped):
             return
 
         from PIL import Image
-        from cStringIO import StringIO
+        from StringIO import StringIO
         from django.core.files.uploadedfile import SimpleUploadedFile
         import os
 
