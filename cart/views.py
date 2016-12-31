@@ -124,7 +124,9 @@ def add_to_monthly(request, slug):
         quantity = item.quantity
         total = item.total()
     objs = Monthly.objects.filter(owner=request.user)
-    all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    all_total = objs.aggregate(
+        total=ExpressionWrapper(
+            Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
     return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
 
 
@@ -142,7 +144,9 @@ def remove_from_monthly(request, slug):
             quantity = item.quantity
             total = item.total()
             objs = Monthly.objects.filter(owner=request.user)
-            all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+            all_total = objs.aggregate(
+                total=ExpressionWrapper(
+                    Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
         else:
             pass
         return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
@@ -160,5 +164,7 @@ def delete_from_monthly(request, slug):
         item.delete()
 
     objs = Monthly.objects.filter(owner=request.user)
-    all_total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    all_total = objs.aggregate(
+        total=ExpressionWrapper(
+            Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
     return JsonResponse({"id": item.id, "all_total": all_total})
