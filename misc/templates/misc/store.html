@@ -14,20 +14,27 @@
 
 {% block items %}
 	<ul class="nav nav-tabs">
-	  <li><a href="{% url 'misc:faq' %}">FAQ</a></li>
+	  <li><a href="{% url 'misc:faq' %}">Frequently Asked Questions</a></li>
 	  <li><a href="{% url 'misc:our_story' %}">Our Story</a></li>
 	  <li class="active"><a href="{% url 'misc:store' %}">Store</a></li>
 	  <li><a href="{% url 'misc:contact_us' %}">Contact Us</a></li>
 	  <li><a href="{% url 'misc:terms_of_use' %}">Terms of Use</a></li>
 	</ul>
 
+    <br/>
+
 	<div class="row">
 		<div class="col-md-11 text-justify">
 			<p>Our first medicine store is located in Mirpur DOHS area over 1000SFT area. We have a plan to set up few other stores in prominent location of Dhaka City.</p>
-
-			<h4>Abu Saleh Md. Salehin</h4>
-			Salehin is Founder and CEO of Pharma AiD. Before Pharma AiD, Salehin worked for a private Commercial Bank of Bangladesh for 6 years. In 2014 he generated an idea to open up an online Pharmacy. Then he gathered information and other knowledge how to open an online pharmacy. And in March 2015, he started his business. Salehin has completed his BBA (Finance) & EMBA (Operations Management) from East West University.
 		</div>
 	</div>
+
+    <div class="row">
+        <div class="col-md-11">
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+                src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJp2csyUvBVTcRTrXeI5zijCk&key=AIzaSyBTCV5E-uaXoNTekYwmcNh7QPRMIxGMh8w" allowfullscreen>
+            </iframe>
+        </div>
+    </div>
 
 {% endblock %}

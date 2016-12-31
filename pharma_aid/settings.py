@@ -190,6 +190,6 @@ EMAIL_BACKEND = 'django_sendmail_backend.backends.EmailBackend'
 
 SOCIALACCOUNT_PROVIDERS = {
     'facebook': {
-        'METHOD': 'js_sdk'
+        'METHOD': 'js_sdk',
     }
 }

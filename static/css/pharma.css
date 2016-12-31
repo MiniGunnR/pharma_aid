@@ -225,6 +225,7 @@ nav {
     margin-top: 10px;
     margin-left: 0px;
     margin-right: 10px;
+    margin-bottom: 20px;
 }
 
 .list-item-image {
@@ -417,16 +418,22 @@ nav {
 /* End of Big Bag items style */
 
 #search_form {
-    position: absolute;
-    margin-left: 180px;
+    position: fixed;
+    left: 200px;
+    right: 180px;
 }
 
 #search_box {
-    width: 500px;
+    width: 100%;
 }
 
 #search_box:focus {
     border-color: coral;
+}
+
+#search_form_container {
+    position: relative;
+    width: 110%;
 }
 
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th {
@@ -451,6 +458,12 @@ nav {
     display: none;
 }
 
+.banner-img {
+    position: relative;
+    left: 5px;
+    width: 95%;
+}
+
 /* NAVBAR STOP COLLAPSE */
 .navbar-collapse.collapse {
   display: block!important;
@@ -469,7 +482,7 @@ nav {
 }
 /* END */
 
-@media (max-width: 880px) {
+@media (max-width: 900px) {
     .nav1 {
         display: none;
     }

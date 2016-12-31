@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse
 from django.core import serializers
 from django.db import IntegrityError
+from django.db.models import Q
 
 import csv
 from django.conf import settings
@@ -55,7 +56,7 @@ def show_product(request, product_slug):
 
 def search_products(request):
     query = request.GET['search']
-    products = Product.objects.filter(name__icontains=query)
+    products = Product.objects.filter(name__icontains=query) | Product.objects.filter(generic__icontains=query)
     return render(request, "catalog/search-result.html", {"products": products})
 
 
