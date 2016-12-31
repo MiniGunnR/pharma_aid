@@ -191,25 +191,25 @@ class Product(TimeStamped):
 
         THUMBNAIL_SIZE = (130,130)
 
-        # DJANGO_TYPE = self.image.file.content_type
+        DJANGO_TYPE = self.image.file.content_type
         # The following is added because 'File' object has no attribute 'content_type' error is displayed
-        if self.image.name.endswith(".jpg"):
-            PIL_TYPE = 'jpeg'
-            FILE_EXTENSION = 'jpg'
-            DJANGO_TYPE = 'image/jpeg'
-
-        elif self.image.name.endswith(".png"):
-            PIL_TYPE = 'png'
-            FILE_EXTENSION = 'png'
-            DJANGO_TYPE = 'image/png'
-        # End of content_type alternative code
-
-        # if DJANGO_TYPE == 'image/jpeg':
+        # if self.image.name.endswith(".jpg"):
         #     PIL_TYPE = 'jpeg'
         #     FILE_EXTENSION = 'jpg'
-        # elif DJANGO_TYPE == 'image/png':
+        #     DJANGO_TYPE = 'image/jpeg'
+        #
+        # elif self.image.name.endswith(".png"):
         #     PIL_TYPE = 'png'
         #     FILE_EXTENSION = 'png'
+        #     DJANGO_TYPE = 'image/png'
+        # End of content_type alternative code
+
+        if DJANGO_TYPE == 'image/jpeg':
+            PIL_TYPE = 'jpeg'
+            FILE_EXTENSION = 'jpg'
+        elif DJANGO_TYPE == 'image/png':
+            PIL_TYPE = 'png'
+            FILE_EXTENSION = 'png'
 
         image = Image.open(StringIO(self.image.read()))
 
