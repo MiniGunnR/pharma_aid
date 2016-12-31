@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^delete/(?P<slug>.*)/', views.delete_from_cart, name='delete-from-cart'),
 
     url(r'^monthly/order/$', views.monthly_order, name='monthly-order'),
+
+    url(r'^transfer/order/$', views.transfer_order, name='transfer-order'),
 ]

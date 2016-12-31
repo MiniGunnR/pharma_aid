@@ -168,3 +168,13 @@ def delete_from_monthly(request, slug):
         total=ExpressionWrapper(
             Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
     return JsonResponse({"id": item.id, "all_total": all_total})
+
+
+def transfer_order(request):
+    monthly = Monthly.objects.filter(owner=request.user)
+    cart = Cart.objects.get(owner=request.user) # get or create
+
+    for item in monthly:
+        obj, created = CartItem.objects.update_or_create(cart=cart, product=item.product, defaults={'quantity': item.quantity})
+    return HttpResponse('OK')
+
