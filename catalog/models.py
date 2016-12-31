@@ -228,5 +228,8 @@ class Product(TimeStamped):
 
     def save(self, *args, **kwargs):
         self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(int(random.random() * 1000000))))
-        self.create_thumbnail()
+        if self.image is not None:
+            original_image = Product.objects.get(pk=self.pk).image
+            if original_image != self.image:
+                self.create_thumbnail()
         super(Product, self).save(*args, **kwargs)
