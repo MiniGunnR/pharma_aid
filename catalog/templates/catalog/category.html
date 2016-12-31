@@ -42,7 +42,7 @@
 {#	            </div>#}
 {#		    </a>#}
             <div class="list-item-details text-center">
-                <p><b>Tk. {{ item.price }}</b></p>
+                <p><b>Tk. {{ item.sale_price|safe }}</b></p>
             </div>
 
             <div class="list-item-button text-center" data-slug="{{ item.slug }}">

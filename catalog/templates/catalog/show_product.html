@@ -17,15 +17,16 @@
 
 	<div class="row">
 		<div class="col-sm-4">
+			<img src="/media/{{ product.image }}" width="100%"/>
+		</div>
+
+        <div class="col-sm-6">
 			<a href="#" class="btn btn-primary add-to-bag"  data-slug="{{ product.slug }}">Add to Bag</a>
 			<a href="#" class="btn btn-primary add-to-monthly-btn" data-slug="{{ product.slug }}">Add to Monthly Order</a>
 		</div>
 	</div>
 
-	<div class="row">
-		<div class="col-sm-4">
-			<img src="/media/{{ product.image }}" width="100%"/>
-		</div>
+    <div class="row">
 		<div class="col-sm-6">
 			<p>{{ product.name }}</p>
 			<p>{{ product.generic }}</p>
