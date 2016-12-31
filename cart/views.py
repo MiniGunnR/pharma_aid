@@ -4,7 +4,7 @@ import random
 from django.shortcuts import render
 import string
 from django.db import transaction
-from django.db.models import Sum, F
+from django.db.models import Sum, F, DecimalField, ExpressionWrapper
 
 
 from .models import Cart, CartItem, Monthly
@@ -103,7 +103,9 @@ def delete_from_cart(request, slug):
 
 def monthly_order(request):
     objs = Monthly.objects.filter(owner=request.user)
-    total = objs.aggregate(total=Sum(F('product__price') * F('quantity')))['total']
+    total = objs.aggregate(
+        total=ExpressionWrapper(
+            Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
     return render(request, "cart/monthly-order.html", { "objs": objs, "total": total })
 
 
