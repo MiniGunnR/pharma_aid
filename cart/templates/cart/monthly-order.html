@@ -18,7 +18,7 @@
 	<table class="table">
 
 	{% for obj in objs %}
-		<tr>
+		<tr id="monthly-item-{{ obj.id }}">
 			<td>{{ obj.name }}</td>
 			<td>{{ obj.price }}</td>
 			<td>
@@ -32,7 +32,7 @@
 			</td>
 			<td><span id="{{ obj.id }}_total">{{ obj.total }}</span></td>
 			<td>
-				<a href="{% url 'cart:delete-from-monthly' obj.product.slug %}" data-slug="{{ obj.product.slug }}"><i class="fa fa-trash"></i></a>
+				<a href="{% url 'cart:delete-from-monthly' obj.product.slug %}" class="delete-from-monthly" data-slug="{{ obj.product.slug }}" data-id="{{ obj.id }}"><i class="fa fa-trash"></i></a>
 			</td>
 		</tr>
 		{% empty %}

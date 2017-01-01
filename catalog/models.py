@@ -92,12 +92,31 @@ class UploadToPathAndRename(object):
         ext = filename.split('.')[-1]
         # get filename
         if instance.slug:
-            filename = '{}.{}'.format(instance.slug , ext)
+            filename = '{}.{}'.format(instance.slug, ext)
         else:
             # set filename as random string
             filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
         return os.path.join(self.sub_path, filename)
+
+
+@deconstructible
+class UploadToPathAndRenameThumbnail(object):
+
+    def __init__(self, path):
+        self.sub_path = path
+
+    def __call__(self, instance, filename):
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.slug:
+            filename = '{}_thumbnail.{}'.format(instance.slug, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(self.sub_path, filename)
+
 
 class Product(TimeStamped):
     # each individual dosage assignment
@@ -148,7 +167,7 @@ class Product(TimeStamped):
     height = models.CharField(max_length=4, blank=True, null=True)
     width = models.CharField(max_length=4, blank=True, null=True)
     image = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
-    thumbnail = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
+    thumbnail = models.ImageField(upload_to=UploadToPathAndRenameThumbnail('img/items'), height_field='height', width_field='width', blank=True)
 
     # dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
     #                                      default=TABLET)
@@ -228,9 +247,11 @@ class Product(TimeStamped):
         self.thumbnail.save('%s_thumbnail.%s'%(os.path.splitext(suf.name)[0],FILE_EXTENSION), suf, save=False)
 
     def save(self, *args, **kwargs):
-        self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(int(random.random() * 1000000))))
+        # self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(int(random.random() * 1000000))))
+        self.slug = slugify("{0}-{1}".format(self.name, self.dosage))
         if self.image is not None:
             original_image = Product.objects.get(pk=self.pk).image
             if original_image != self.image:
                 self.create_thumbnail()
-        super(Product, self).save(*args, **kwargs)
+            return super(Product, self).save(*args, **kwargs)
+

@@ -22,16 +22,20 @@ class Order(TimeStamped):
                       (RETURNED,'Returned'),)
 
     # each individual delivery time
-    MORNING = 1
-    NOON = 2
-    EVENING = 3
-    NIGHT = 4
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
 
     # set of possible delivery times
-    DELIVERY_TIMES = ((MORNING,'Morning'),
-                      (NOON,'Noon'),
-                      (EVENING,'Evening'),
-                      (NIGHT,'Night'),)
+    DELIVERY_TIMES = ((ONE,'10AM - 12PM'),
+                      (TWO,'12PM - 2PM'),
+                      (THREE,'2PM - 4PM'),
+                      (FOUR,'4PM - 6PM'),
+                      (FIVE,'6PM - 8PM'),
+                      (SIX,'8PM - 10PM'))
 
     # each individual payment method
     CASH_ON_DELIVERY = 1
@@ -67,7 +71,7 @@ class Order(TimeStamped):
     billing_zip = models.CharField(max_length=10)
     billing_country = models.CharField(max_length=50)
 
-    delivery_time = models.IntegerField(choices=DELIVERY_TIMES, default=EVENING)
+    delivery_time = models.IntegerField(choices=DELIVERY_TIMES, default=FOUR)
     delivery_charge = models.IntegerField(default=0)
 
     payment_method = models.IntegerField(choices=PAYMENT_METHODS, default=CASH_ON_DELIVERY)

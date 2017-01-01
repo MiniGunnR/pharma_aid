@@ -202,6 +202,23 @@ $(function() {
         });
     });
 
+    $(document).on("click", ".delete-from-monthly", function(e) {
+        e.preventDefault();
+
+        var slug = $(this).attr('data-slug');
+        var url = $(this).attr('href');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+
+            success: function(data) {
+                $("#monthly-item-" + data.id).remove();
+                $("#all_total").html(data.all_total);
+            }
+        });
+    });
+
     $(document).on('click', '#order_now', function(e) {
         e.preventDefault();
 
@@ -212,7 +229,8 @@ $(function() {
             url: url,
 
             success: function(data) {
-                alert('hello');
+                $("#bag-item-number").html(data.cart_items);
+                $("#bag-taka-number").html(data.cart_total);
             }
         });
     });

@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from decimal import Decimal
 import random
 from django.shortcuts import render
 import string
@@ -161,20 +162,23 @@ def delete_from_monthly(request, slug):
     except Monthly.DoesNotExist:
         pass
     else:
+        item_id = item.id
         item.delete()
 
     objs = Monthly.objects.filter(owner=request.user)
     all_total = objs.aggregate(
         total=ExpressionWrapper(
             Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
-    return JsonResponse({"id": item.id, "all_total": all_total})
+    return JsonResponse({"id": item_id, "all_total": all_total})
 
 
 def transfer_order(request):
     monthly = Monthly.objects.filter(owner=request.user)
-    cart = Cart.objects.get(owner=request.user) # get or create
 
     for item in monthly:
-        obj, created = CartItem.objects.update_or_create(cart=cart, product=item.product, defaults={'quantity': item.quantity})
-    return HttpResponse('OK')
+        for i in range(item.quantity):
+            add_to_cart(request, item.product.slug)
+
+    cart = Cart.objects.get(owner=request.user)
+    return JsonResponse({'cart_items': cart.items, 'cart_total': cart.total})
 

@@ -39,6 +39,7 @@ def user_has_mobile(user):
 def PlaceOrder(request):
     my_addresses = Address.objects.filter(user=request.user)
     default_address = Address.objects.get(user=request.user, default=True)
+    delivery_times = Order.DELIVERY_TIMES
     return render(request, "order/place-order.html", locals())
 
 

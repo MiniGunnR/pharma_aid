@@ -17,7 +17,9 @@
 
 	<div class="row">
 		<div class="col-sm-4">
-			<img src="/media/{{ product.image }}" width="100%"/>
+			{% if product.image %}
+				<img src="/media/{{ product.image }}" width="100%"/>
+				{% endif %}
 		</div>
 
         <div class="col-sm-6">
