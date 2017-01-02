@@ -251,7 +251,12 @@ class Product(TimeStamped):
         # self.slug = slugify("{0}-{1}-{2}".format(self.name, self.dosage, str(int(random.random() * 1000000))))
         self.slug = slugify("{0}-{1}".format(self.name, self.dosage))
         if self.image is not None:
-            original_image = Product.objects.get(pk=self.pk).image
+            try:
+                prod = Product.objects.get(pk=self.pk)
+            except Product.DoesNotExist:
+                pass
+            else:
+                original_image = prod.image
             if original_image != self.image:
                 self.create_thumbnail()
             return super(Product, self).save(*args, **kwargs)
