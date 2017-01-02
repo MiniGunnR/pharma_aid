@@ -5,6 +5,7 @@ import os
 from uuid import uuid4
 from django.utils.deconstruct import deconstructible
 from django.conf import settings
+from .storage import OverwriteStorage
 
 from utils.models import TimeStamped
 
@@ -166,8 +167,8 @@ class Product(TimeStamped):
 
     height = models.CharField(max_length=4, blank=True, null=True)
     width = models.CharField(max_length=4, blank=True, null=True)
-    image = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True)
-    thumbnail = models.ImageField(upload_to=UploadToPathAndRenameThumbnail('img/items'), height_field='height', width_field='width', blank=True)
+    image = models.ImageField(upload_to=UploadToPathAndRename('img/items'), height_field='height', width_field='width', blank=True, storage=OverwriteStorage())
+    thumbnail = models.ImageField(upload_to=UploadToPathAndRenameThumbnail('img/items'), height_field='height', width_field='width', blank=True, storage=OverwriteStorage())
 
     # dosage = models.PositiveIntegerField(choices=DOSAGE_TYPES,
     #                                      default=TABLET)

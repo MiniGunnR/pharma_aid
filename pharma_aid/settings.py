@@ -80,7 +80,7 @@ if HOSTNAME == 'pharma-aid':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'pharmadb',
+            'NAME': 'pharmaaiddb',
             'USER': 'michel',
             'PASSWORD': 'MMii123#',
             'HOST': 'localhost',
