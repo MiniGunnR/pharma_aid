@@ -101,6 +101,12 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <div id="fb-root"></div>
+	<script id="allauth-facebook-settings" type="application/json">
+	{"cancelUrl": "http://pharmaaid.co/accounts/social/login/cancelled/", "loginByTokenUrl": "http://pharmaaid.co/accounts/facebook/login/token/", "version": "v2.4", "logoutUrl": "http://pharmaaid.co/accounts/logout/", "loginOptions": {"scope": "email"}, "appId": "930590363686506", "locale": "en_US", "loginUrl": "http://pharmaaid.co/accounts/facebook/login/", "csrfToken": "FWy8uiHw6zJySl8BQrPsc6amSHf4gHVa", "errorUrl": "http://pharmaaid.co/accounts/social/login/error/"}
+	</script>
+	<script type="text/javascript" src="/static/facebook/js/fbconnect.js"></script>
+
     <div class="modal fade" id="popUpLoginWindow">
 	    <div class="modal-dialog">
 		    <div class="modal-content">
@@ -113,12 +119,16 @@
 
 			    <!-- body -->
 			    <div class="modal-body">
-				    <form method="post" action=".">
+				    <form method="post" action="/accounts/login/"> {% csrf_token %}
 					    <div class="form-group">
-						    <input type="email" class="form-control" placeholder="Email"/>
+						    <a title="Facebook" class="socialaccount_provider facebook btn btn-block btn-social btn-facebook sharp" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">
+                  Sign In with Facebook</a>
 					    </div>
 					    <div class="form-group">
-						    <input type="password" class="form-control" placeholder="Password"/>
+						    <input type="text" id="id_login" name="login" class="form-control" placeholder="Email or Mobile"/>
+					    </div>
+					    <div class="form-group">
+						    <input type="password" id="id_password" name="password" class="form-control" placeholder="Password"/>
 					    </div>
 				    </form>
 			    </div>
