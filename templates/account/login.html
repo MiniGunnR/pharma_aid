@@ -49,7 +49,7 @@
         <form class="login form-signin" method="POST" action="{% url 'account_login' %}">
             {% csrf_token %}
 
-            <a title="Facebook" class="socialaccount_provider facebook btn btn-block btn-social btn-facebook sharp" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">
+            <a title="Facebook" class="socialaccount_provider facebook btn btn-social btn-facebook sharp" href="javascript:allauth.facebook.login('', 'authenticate', 'login')">
                   Sign In with Facebook</a>
 
             <br/>
@@ -83,7 +83,7 @@
 
             <a class="button secondaryAction pull-right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
-            <button class="primaryAction btn btn-md btn-primary btn-block sharp" type="submit">{% trans "Sign In" %}</button>
+            <button class="primaryAction btn btn-md btn-primary sharp" type="submit">{% trans "Sign In" %}</button>
         </form>
     </div>
         </div>
