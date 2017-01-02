@@ -257,7 +257,8 @@ class Product(TimeStamped):
                 pass
             else:
                 original_image = prod.image
-            if original_image != self.image:
-                self.create_thumbnail()
+            if original_image:
+                if original_image != self.image:
+                    self.create_thumbnail()
             return super(Product, self).save(*args, **kwargs)
 
