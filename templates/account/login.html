@@ -8,13 +8,13 @@
 {% block content %}
 
 <div class="container">
+{#    <div class="row">#}
+{#	    <div class="col-md-4 text-center">#}
+{#	        <a  style="font-size: 50px;" href="{% url 'catalog:home' %}" class="glyphicon glyphicon-home"></a>#}
+{#	    </div>#}
+{#    </div>#}
     <div class="row">
-	    <div class="col-md-4 text-center">
-	        <a  style="font-size: 50px;" href="{% url 'catalog:home' %}" class="glyphicon glyphicon-home"></a>
-	    </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 text-center">
     <h1 class="login-title text-center">{% trans "Sign In to Pharma Aid" %}</h1>
 
     {% get_providers as socialaccount_providers %}
