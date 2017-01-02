@@ -73,13 +73,18 @@
             {% endfor %}
         {% endif %}
 
+        <div class="form-group">
             <input autofocus="autofocus" id="id_login" name="login" placeholder="Email or Mobile" type="text" class="form-control sharp" />
+        </div>
+
+        <div class="form-group">
             <input id="id_password" name="password" placeholder="Password" type="password" class="form-control sharp" />
+        </div>
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
 
-            <label for="id_remember">Remember Me:</label> <input id="id_remember" name="remember" type="checkbox" />
+{#            <label for="id_remember">Remember Me:</label> <input id="id_remember" name="remember" type="checkbox" />#}
 
             <a class="button secondaryAction pull-right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
 
