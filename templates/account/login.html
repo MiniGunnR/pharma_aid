@@ -85,8 +85,9 @@
             {% endif %}
 
 {#            <label for="id_remember">Remember Me:</label> <input id="id_remember" name="remember" type="checkbox" />#}
-
+        <div class="form-group">
             <a class="button secondaryAction pull-right" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </div>
 
             <button class="primaryAction btn btn-md btn-primary sharp" type="submit">{% trans "Sign In" %}</button>
         </form>
