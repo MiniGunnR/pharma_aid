@@ -107,7 +107,7 @@ def monthly_order(request):
     total = objs.aggregate(
         total=ExpressionWrapper(
             Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
-    return render(request, "cart/monthly-order.html", { "objs": objs, "total": total })
+    return render(request, "cart/monthly-order.html", { "objs": objs, "total": '%.2f' % total })
 
 
 @transaction.atomic
@@ -128,7 +128,7 @@ def add_to_monthly(request, slug):
     all_total = objs.aggregate(
         total=ExpressionWrapper(
             Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
-    return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
+    return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": '%.2f' % all_total})
 
 
 @transaction.atomic
@@ -150,7 +150,7 @@ def remove_from_monthly(request, slug):
                     Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
         else:
             pass
-        return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": all_total})
+        return JsonResponse({"id": item.id, "quantity": quantity, "total": total, "all_total": '%.2f' % all_total})
 
 
 @transaction.atomic

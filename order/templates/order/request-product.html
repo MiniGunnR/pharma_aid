@@ -34,6 +34,9 @@
 	        <th>Power</th>
 	        <th>Quantity</th>
 	        <th>Country</th>
+	        <th>Date/Time</th>
+	        <th>Note</th>
+	        <th>Status</th>
 	    </tr>
 	    {% endif %}
 	    <tr>
@@ -42,6 +45,9 @@
 	        <td>{{ product.power }}</td>
 	        <td>{{ product.quantity }}</td>
 	        <td>{{ product.country }}</td>
+	        <td>{{ product.created }}</td>
+	        <td></td>
+	        <td>Requested</td>
 	    </tr>
         {% empty %}
         You still did not request any product from us!
