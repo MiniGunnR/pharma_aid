@@ -185,6 +185,12 @@ class Product(TimeStamped):
     def get_absolute_url(self):
         return ('catalog_product', (), { 'product_slug': self.slug })
 
+    def current_price(self):
+        if self.discount_price > 0:
+            return self.discount_price
+        else:
+            return self.price
+
     def sale_price(self):
         if self.discount_price > 0:
             return "%s <small><strike>Tk. %s</strike></small>" % (self.discount_price, self.price)
