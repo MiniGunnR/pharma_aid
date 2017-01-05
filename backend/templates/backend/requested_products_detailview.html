@@ -1,11 +1,17 @@
 {% extends "admin_base.html" %}
 
 {% block main %}
+	<a href="{% url 'backend:requested-products-update-view' object.id %}" class="btn btn-sm btn-danger">EDIT</a>
+
+	<hr/>
+
 	<h1>{{ object.name }}</h1>
 	<p>Ordered by: {{ object.user.get_full_name }}</p>
 	<p>Order Time: {{ object.created }}</p>
 	<p>Quantity: {{ object.quantity }}</p>
 	<p>Group: {{ object.group }}</p>
 	<p>Country: {{ object.country }}</p>
+	<p>Status: {{ object.get_status_display }}</p>
+	<p>Note: {{ object.note }}</p>
 {% endblock %}
 

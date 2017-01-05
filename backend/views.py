@@ -169,6 +169,19 @@ class RequestedProductDetailView(DetailView):
         return super(RequestedProductDetailView, self).dispatch(*args, **kwargs)
 
 
+class RequestedProductUpdateView(UpdateView):
+    model = RequestedProduct
+    template_name = "backend/requested_products_updateview.html"
+    fields = ['status', 'note']
+
+    def get_success_url(self):
+        return reverse('backend:requested-products-detail-view', args=(self.object.id,))
+
+    @method_decorator(staff_member_required)
+    def dispatch(self, *args, **kwargs):
+        return super(RequestedProductUpdateView, self).dispatch(*args, **kwargs)
+
+
 @staff_member_required
 def orders(request):
     orders = Order.objects.all().order_by('-created')

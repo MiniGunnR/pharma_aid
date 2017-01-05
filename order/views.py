@@ -1,9 +1,8 @@
+import random, os, string, math
+
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.http import JsonResponse, HttpResponseRedirect
-import random
-import string
-import math
 from django.db import transaction
 from django.core.urlresolvers import reverse_lazy
 
@@ -197,6 +196,7 @@ def RequestProduct(request):
             f = form.save(commit=False)
             f.user = request.user
             f.save()
+            os.system('echo "A new request has been placed for a product by %s" | mail -s "Product Requested by a User" hasan.mohaiminul@gmail.com' % f.user.get_full_name())
             return HttpResponseRedirect('/order/request/a/product/')
     else:
         form = RequestProductForm()

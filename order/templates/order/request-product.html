@@ -46,8 +46,8 @@
 	        <td>{{ product.quantity }}</td>
 	        <td>{{ product.country }}</td>
 	        <td>{{ product.created }}</td>
-	        <td></td>
-	        <td>Requested</td>
+	        <td>{{ product.note }}</td>
+	        <td>{{ product.get_status_display }}</td>
 	    </tr>
         {% empty %}
         You still did not request any product from us!

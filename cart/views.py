@@ -107,7 +107,11 @@ def monthly_order(request):
     total = objs.aggregate(
         total=ExpressionWrapper(
             Sum(F('product__price') * F('quantity')), output_field=DecimalField()))['total']
-    return render(request, "cart/monthly-order.html", { "objs": objs, "total": '%.2f' % total })
+    if objs.exists():
+        total = '%.2f' % total
+    else:
+        total = None
+    return render(request, "cart/monthly-order.html", { "objs": objs, "total": total })
 
 
 @transaction.atomic

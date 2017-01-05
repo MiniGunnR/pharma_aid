@@ -123,6 +123,10 @@ class OrderItem(models.Model):
         return self.product.get_absolute_url()
 
 
+REQUESTED = 1
+PROCESSING = 2
+DELIVERED = 3
+
 class RequestedProduct(TimeStamped):
     user = models.ForeignKey(settings.AUTH_USER_MODEL)
     name = models.CharField(max_length=100)
@@ -130,6 +134,16 @@ class RequestedProduct(TimeStamped):
     power = models.CharField(max_length=100, blank=True)
     quantity = models.CharField(max_length=100)
     country = models.CharField(max_length=100, blank=True)
+
+    status_choices = (
+        (REQUESTED, 'Requested'),
+        (PROCESSING, 'Processing'),
+        (DELIVERED, 'Delivered'),
+    )
+
+    status = models.SmallIntegerField(choices=status_choices,
+                                      default=REQUESTED)
+    note = models.CharField(max_length=255, default='')
 
     def __unicode__(self):
         return self.name

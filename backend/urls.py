@@ -22,6 +22,7 @@ urlpatterns = [
 
     url(r'^requested/products/$', views.requested_products, name='requested_products'),
     url(r'^requested/products/(?P<pk>\d+)/details/$', views.RequestedProductDetailView.as_view(), name='requested-products-detail-view'),
+    url(r'^requested/products/(?P<pk>\d+)/edit/$', views.RequestedProductUpdateView.as_view(), name='requested-products-update-view'),
 
     url(r'^orders/$', views.orders, name='orders'),
     url(r'^orders/(?P<pk>\d+)/details/$', views.OrderDetailView.as_view(), name='order-detail-view'),

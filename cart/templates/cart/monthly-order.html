@@ -21,13 +21,13 @@
 		<tr id="monthly-item-{{ obj.id }}">
 			<td>{{ obj.name }}</td>
 			<td>{{ obj.price }}</td>
-			<td style="width: 5%;">
+			<td style="width: 5%; font-size: 1.2em;">
 				<a href="{% url 'cart:remove-from-monthly' obj.product.slug %}" class="remove-from-monthly" data-slug="{{ obj.product.slug }}"><i class="fa fa-caret-left"></i></a>
 			</td>
 			<td style="width: 5%;">
 				<span id="{{ obj.id }}_quantity">{{ obj.quantity }}</span>
 			</td>
-			<td style="width: 5%;">
+			<td style="width: 5%; font-size: 1.2em;">
 				<a href="{% url 'cart:add-to-monthly' obj.product.slug %}" class="add-to-monthly" data-slug="{{ obj.product.slug }}"><i class="fa fa-caret-right"></i></a>
 			</td>
 			<td style="width: 10%;"><span id="{{ obj.id }}_total">{{ obj.total }}</span></td>
