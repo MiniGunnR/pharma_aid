@@ -1,4 +1,4 @@
-import random, os, string, math
+import random, os, string, math, datetime, calendar
 
 from django.shortcuts import render
 from django.contrib.auth.decorators import user_passes_test, login_required
@@ -38,6 +38,17 @@ def user_has_mobile(user):
 def PlaceOrder(request):
     my_addresses = Address.objects.filter(user=request.user)
     default_address = Address.objects.get(user=request.user, default=True)
+
+    today = datetime.date.today()
+    tomorrow = datetime.date.today() + datetime.timedelta(days=1)
+    day_after_tomorrow = datetime.date.today() + datetime.timedelta(days=2)
+
+    delivery_dates = (
+        (today, 'Today'),
+        (tomorrow, 'Tomorrow'),
+        (day_after_tomorrow, '{0} {1} {2}'.format(day_after_tomorrow.day, calendar.month_abbr[day_after_tomorrow.month], day_after_tomorrow.year))
+    )
+
     delivery_times = Order.DELIVERY_TIMES
     return render(request, "order/place-order.html", locals())
 
@@ -61,8 +72,11 @@ def ConfirmOrder(request):
     address = Address.objects.get(id=request.session['address'])
     details = address.addressinfo
 
-    request.session['time'] = int(items['time_options'])
-    time = Order.DELIVERY_TIMES[request.session['time'] - 1][1]
+    request.session['delivery_date'] = items['delivery_date']
+    date = request.session['delivery_date']
+
+    request.session['delivery_time'] = Order.DELIVERY_TIMES[int(items['delivery_time']) - 1]
+    time = request.session['delivery_time'][1]
 
     request.session['payment'] = int(items['payment_options'])
     payment = Order.PAYMENT_METHODS[request.session['payment'] - 1][1]
@@ -70,6 +84,7 @@ def ConfirmOrder(request):
     context = {
         "address": address,
         "details": details,
+        "date": date,
         "time": time,
         "payment": payment}
 
@@ -128,6 +143,7 @@ def SaveOrder(request):
         billing_zip = address.addressinfo.zip
         billing_country = address.addressinfo.country
 
+        delivery_date = request.POST['date']
         delivery_time = int(request.POST['time'])
 
         payment_method = int(request.POST['payment'])
@@ -156,6 +172,7 @@ def SaveOrder(request):
                                      billing_city=billing_city,
                                      billing_zip=billing_zip,
                                      billing_country=billing_country,
+                                     delivery_date=delivery_date,
                                      delivery_time=delivery_time,
                                      payment_method=payment_method,
                                      trx_id=trx_id,

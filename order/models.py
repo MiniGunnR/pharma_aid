@@ -1,6 +1,7 @@
 import decimal
 from django.db import models
 from django.conf import settings
+import datetime
 
 from catalog.models import Product
 from utils.models import TimeStamped
@@ -20,22 +21,6 @@ class Order(TimeStamped):
                       (DELIVERED,'Shipped'),
                       (CANCELLED,'Cancelled'),
                       (RETURNED,'Returned'),)
-
-    # each individual delivery time
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FIVE = 5
-    SIX = 6
-
-    # set of possible delivery times
-    DELIVERY_TIMES = ((ONE,'10AM - 12PM'),
-                      (TWO,'12PM - 2PM'),
-                      (THREE,'2PM - 4PM'),
-                      (FOUR,'4PM - 6PM'),
-                      (FIVE,'6PM - 8PM'),
-                      (SIX,'8PM - 10PM'))
 
     # each individual payment method
     CASH_ON_DELIVERY = 1
@@ -70,6 +55,24 @@ class Order(TimeStamped):
     billing_city = models.CharField(max_length=50)
     billing_zip = models.CharField(max_length=10)
     billing_country = models.CharField(max_length=50)
+
+    delivery_date = models.CharField(max_length=50)
+
+    # each individual delivery time
+    ONE = 1
+    TWO = 2
+    THREE = 3
+    FOUR = 4
+    FIVE = 5
+    SIX = 6
+
+    # set of possible delivery times
+    DELIVERY_TIMES = ((ONE,'10AM - 12PM'),
+                      (TWO,'12PM - 2PM'),
+                      (THREE,'2PM - 4PM'),
+                      (FOUR,'4PM - 6PM'),
+                      (FIVE,'6PM - 8PM'),
+                      (SIX,'8PM - 10PM'))
 
     delivery_time = models.IntegerField(choices=DELIVERY_TIMES, default=FOUR)
     delivery_charge = models.IntegerField(default=0)

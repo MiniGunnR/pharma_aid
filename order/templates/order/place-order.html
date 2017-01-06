@@ -40,28 +40,27 @@
 
     <hr/>
 
+	<div class="row">
+		<div class="col-sm-3">Delivery Date:</div>
+		<div class="col-sm-2">
+			<select name="delivery_date" class="form-control">
+			{% for date in delivery_dates %}
+				<option value="{{ date.0 }}">{{ date.1 }}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+
+	<hr/>
+
     <div class="row">
         <div class="col-sm-3">Delivery Time:</div>
-        <div class="col-sm-9">
-            <div class="btn-group" data-toggle="buttons">
+        <div class="col-sm-2">
+            <select name="delivery_time" class="form-control">
             {% for time in delivery_times %}
-                <label class="btn btn-default{% if time.0 == 4 %} active{% endif %}">
-                    <input type="radio" name="time_options" value={{ time.0 }} autocomplete="off"{% if time.0 == 4 %} checked{% endif %}>{{ time.1 }}
-                </label>
+                <option value="{{ time.0 }}">{{ time.1 }}</option>
                 {% endfor %}
-{#	            <label class="btn btn-default">#}
-{#                    <input type="radio" name="time_options" value=1 autocomplete="off">Morning#}
-{#                </label>#}
-{#                <label class="btn btn-default">#}
-{#                    <input type="radio" name="time_options" value=2 autocomplete="off">Noon#}
-{#                </label>#}
-{#                <label class="btn btn-default active">#}
-{#                    <input type="radio" name="time_options" value=3 autocomplete="off" checked>Evening#}
-{#                </label>#}
-{#                <label class="btn btn-default">#}
-{#                    <input type="radio" name="time_options" value=4 autocomplete="off">Night#}
-{#                </label>#}
-            </div>
+            </select>
         </div>
     </div>
 

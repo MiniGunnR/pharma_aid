@@ -50,6 +50,13 @@
 	<hr/>
 
 	<div class="row">
+		<div class="col-sm-3">Delivery Date:</div>
+		<div class="col-sm-9">{{ date }}</div>
+	</div>
+
+	<hr/>
+
+	<div class="row">
 		<div class="col-sm-3">Delivery Time:</div>
 		<div class="col-sm-9">{{ time }}</div>
 	</div>
@@ -78,7 +85,8 @@
 	<div class="row">
 		<div class="col-sm-3">
             <input type="hidden" name="address" id="address" class="form-control" value="{{ request.session.address }}"/>
-            <input type="hidden" name="time" id="time" class="form-control" value="{{ request.session.time }}"/>
+            <input type="hidden" name="date" id="date" class="form-control" value="{{ request.session.delivery_date }}"/>
+            <input type="hidden" name="time" id="time" class="form-control" value="{{ request.session.delivery_time.0 }}"/>
             <input type="hidden" name="payment" id="payment" class="form-control" value="{{ request.session.payment }}"/>
             <input type="hidden" name="subtotal" id="subtotal" class="form-control" value="{{ subtotal }}"/>
             <input type="hidden" name="delivery_charge" id="delivery_charge" class="form-control" value="{{ delivery_charge }}"/>
