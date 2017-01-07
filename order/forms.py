@@ -6,7 +6,7 @@ from .models import RequestedProduct, Prescription
 class RequestProductForm(forms.ModelForm):
     class Meta:
         model = RequestedProduct
-        exclude = ['user']
+        exclude = ['user', 'status', 'note']
 
 
 class PrescriptionForm(forms.ModelForm):
