@@ -231,6 +231,35 @@ $(function() {
             success: function(data) {
                 $("#bag-item-number").html(data.cart_items);
                 $("#bag-taka-number").html(data.cart_total);
+                $("#big-bag-item-number").html(data.cart_items);
+                $("#big-bag-taka-number").html(data.cart_total);
+
+                $.each(data.array, function(index, value) {
+                    if ($("#cart-item-" + value.cart_item_id).length == 0) {
+                        $("#big-bag-body").append('<div class="bag-item" id="cart-item-' + value.cart_item_id + '"> \
+                                                        <div class="left-control"> \
+                                                            <div class="qty_up" data-slug="' + value.slug + '"><center><i class="fa fa-sort-up left-control-button"></i></center></div> \
+                                                            <div class="quantity"><center id="' + value.slug + '_quantity_in_bag">' + value.qty + '</center></div> \
+                                                            <div class="qty_down" data-slug="' + value.slug + '"><center><i class="fa fa-sort-down left-control-button"></i></center></div> \
+                                                        </div> \
+                                                        <div class="product_img"><img src="https://placeholdit.imgix.net/~text?&w=30&h=30"/></div> \
+                                                        <div class="product_details"> \
+                                                            <div class="product_name">' + value.name + '</div> \
+                                                            <div class="product_price"> \
+                                                                <small>Tk. ' + value.price + ' / box</small> \
+                                                            </div> \
+                                                        </div> \
+                                                        <div class="total" id="' + value.slug + '_total">' + value.total + '</div> \
+                                                        <div class="remove cart-item-remove" data-slug="' + value.slug + '"> \
+                                                            <i class="fa fa-close"></i> \
+                                                        </div> \
+                                                    </div>');
+                        }
+                    else {
+                        $("#" + value.slug + "_quantity_in_bag").text(value.qty);
+                        $("#" + value.slug + "_total").text(value.total);
+                    }
+                });
             }
         });
     });

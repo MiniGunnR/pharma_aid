@@ -184,5 +184,11 @@ def transfer_order(request):
             add_to_cart(request, item.product.slug)
 
     cart = Cart.objects.get(owner=request.user)
-    return JsonResponse({'cart_items': cart.items, 'cart_total': cart.total})
+    cart_items = CartItem.objects.filter(cart=cart)
+
+    cart_array = []
+    for item in cart_items:
+        cart_array.append({'cart_item_id': item.id, 'item': item.product_id, 'price': item.product.price, 'name': item.product.name, 'qty': item.quantity, 'total': item.total(), 'slug': item.product.slug})
+
+    return JsonResponse({'cart_items': cart.items, 'cart_total': cart.total, 'array': cart_array})
 
