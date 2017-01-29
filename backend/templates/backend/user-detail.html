@@ -1,0 +1,25 @@
+{% extends "admin_base.html" %}
+
+{% block main %}
+	<p>{{ user.get_full_name }}</p>
+	<p>{{ user.email }}</p>
+	<p>{{ user.mobile }}</p>
+
+	<hr/>
+
+	{% for address in addresses %}
+		<p>{{ address.address_name }}</p>
+		<p>{{ address.addressinfo.name }}</p>
+		<p>{{ address.addressinfo.address_1 }}</p>
+		<p>{{ address.addressinfo.address_2 }}</p>
+		<p>{{ address.addressinfo.city }}</p>
+		<p>{{ address.addressinfo.country }}</p>
+		<hr/>
+		{% endfor %}
+
+	{% for order in orders %}
+		<p>
+			<a href="{% url 'backend:order-detail-view' order.id %}">{{ order }}</a>
+		</p>
+		{% endfor %}
+{% endblock %}

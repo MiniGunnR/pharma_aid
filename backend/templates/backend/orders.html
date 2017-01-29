@@ -7,7 +7,7 @@
             <th>DATE</th>
             <th>STATUS</th>
             <th>PAYMENT MODE</th>
-            <th>TRANSACTION NUMBER</th>
+            <th>BKASH TRX ID</th>
             <th>STATUS</th>
             <th>NOTES</th>
         </tr>
@@ -17,7 +17,7 @@
             <td>{{ order.created }}</td>
             <td>{{ order.get_status_display }}</td>
             <td>{{ order.get_payment_method_display }}</td>
-            <td>{{ order.transaction_id }}</td>
+            <td>{{ order.trx_id }}</td>
             <td>{{ order.get_status_display }}</td>
             <td>{{ order.note }}</td>
         </tr>

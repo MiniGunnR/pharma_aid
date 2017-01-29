@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^prescriptions/(?P<pk>\d+)/$', views.PrescriptionDetailView.as_view(), name='prescription-detail-view'),
 
     url(r'^users/$', views.Users, name='users'),
+    url(r'^users/(?P<pk>\d+)/$', views.user_detail, name='users-detail'),
 
     url(r'^misc/settings/$', views.MiscView, name='misc'),
     url(r'^misc/settings/(?P<pk>\d+)/edit/', views.MiscSettingsUpdateView.as_view(), name='misc-settings-updateview'),

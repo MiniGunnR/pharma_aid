@@ -2,6 +2,6 @@
 
 {% block main %}
 	{% for user in users %}
-		<a href="#">{{ user.get_full_name }}</a> <br/>
+		<a href="{% url 'backend:users-detail' user.pk %}">{{ user.get_full_name }}</a> <br/>
 		{% endfor %}
 {% endblock %}

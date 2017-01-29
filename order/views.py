@@ -123,7 +123,8 @@ def SaveOrder(request):
         status = Order.SUBMITTED
         ip_address = get_client_ip(request)
         user = request.user
-        transaction_id = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+        # transaction_id = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10))
+        transaction_id = ''.join(random.choice(string.digits) for _ in range(10))
         email = user.email
         mobile = user.mobile
 

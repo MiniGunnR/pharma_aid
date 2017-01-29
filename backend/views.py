@@ -262,6 +262,14 @@ def Users(request):
 
 
 @staff_member_required
+def user_detail(request, pk):
+    user = User.objects.get(id=pk)
+    addresses = Address.objects.filter(user=user)
+    orders = Order.objects.filter(user=user)
+    return render(request, "backend/user-detail.html", { "user": user, "addresses": addresses, "orders": orders })
+
+
+@staff_member_required
 def MiscView(request):
     misc = Misc.objects.all()
     context = {
