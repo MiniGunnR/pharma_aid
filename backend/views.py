@@ -242,7 +242,8 @@ class PrescriptionDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PrescriptionDetailView, self).get_context_data()
-        context['address'] = Address.objects.filter(user=self.request.user)
+        user = Prescription.objects.get(id=self.kwargs['pk']).user
+        context['address'] = Address.objects.filter(user=user)
         return context
 
 

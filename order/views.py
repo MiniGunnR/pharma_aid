@@ -219,7 +219,7 @@ def RequestProduct(request):
         form = RequestProductForm()
     return render(request, "order/request-product.html", {"form": form, "requested_products": objs})
 
-
+from django.utils.decorators import method_decorator
 class UploadPrescription(CreateView):
     model = Prescription
     fields = ['image']
@@ -234,3 +234,8 @@ class UploadPrescription(CreateView):
         context = super(UploadPrescription, self).get_context_data()
         context['prescriptions'] = Prescription.objects.filter(user=self.request.user)
         return context
+
+    @method_decorator(user_passes_test(address_check, login_url='/my_account/add/address/'))
+    @method_decorator(user_passes_test(user_has_mobile, login_url='/my_account/add/mobile/'))
+    def dispatch(self, request, *args, **kwargs):
+        return super(self.__class__, self).dispatch(request, *args, **kwargs)
