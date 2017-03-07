@@ -511,12 +511,12 @@ nav {
     #big-bag {
         top: 100px;
         width: 100%;
+        height: calc(100% - 50px);
     }
 
     #big-bag-body {
         width: 100%
     }
-
 
     #search_form {
         position: static;
