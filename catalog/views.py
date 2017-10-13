@@ -80,11 +80,17 @@ def auto(request):
             dosage = None
 
         if datum[3] == "":
-            price = datum[3]
-        else:
             price = 0
+        else:
+            price = datum[3]
+
+        if datum[11] == "":
+            is_active = 0
+        else:
+            is_active = datum[11]
+
         try:
-            Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=price, is_active=datum[11], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+            Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=price, is_active=is_active, unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
         except IntegrityError as e:
             pass
 
