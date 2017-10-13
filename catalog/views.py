@@ -79,7 +79,7 @@ def auto(request):
         except IntegrityError as e:
             dosage = None
 
-        if datum[3] is not "":
+        if datum[3] == "":
             price = datum[3]
         else:
             price = 0
