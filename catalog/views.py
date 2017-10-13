@@ -65,22 +65,22 @@ def auto(request):
     reader = csv.reader(file)
     data = list(reader)
     for datum in data:
-        category, created = Category.objects.get_or_create(name=datum[7])
+        category, created = Category.objects.get_or_create(name=datum[8])
 
         try:
-            subcategory, created = SubCategory.objects.get_or_create(name=datum[8], category=category)
+            subcategory, created = SubCategory.objects.get_or_create(name=datum[10], category=category)
         except IntegrityError as e:
             subcategory = None
 
         manufacturer, created = Manufacturer.objects.get_or_create(name=datum[2])
 
         try:
-            dosage, created = Dosage.objects.get_or_create(name=datum[6])
+            dosage, created = Dosage.objects.get_or_create(name=datum[7])
         except IntegrityError as e:
             dosage = None
 
         try:
-            Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[4], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
+            Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=datum[3], is_active=datum[11], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
         except IntegrityError as e:
             pass
 
