@@ -84,7 +84,7 @@ def auto(request):
         else:
             price = datum[3]
 
-        if datum[11] == "":
+        if datum[11] is None:
             is_active = 0
         else:
             is_active = datum[11]
