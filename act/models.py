@@ -98,7 +98,6 @@ class AddressInfo(TimeStamped):
 
 class Profile(TimeStamped):
     user = models.OneToOneField(User)
-    address = models.CharField(max_length=255)
     institution = models.CharField(max_length=255)
     department = models.CharField(max_length=255)
 

@@ -148,9 +148,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 SITE_ID = 1
-SITE_NAME = 'Modern Musician'
-META_KEYWORDS = 'Music, instruments, music accessories, musician supplies'
-META_DESCRIPTION = 'Modern Musician is an online supplier of instruments, sheet music, and other accessories for musicians'
+SITE_NAME = 'Pharma Aid'
+META_KEYWORDS = 'Pharmacy, drugs, prescription, online, medicine'
+META_DESCRIPTION = 'Pharma Aid is an online supplier of drugs, medicine and pharmaceutical equipments.'
 
 
 # Cookie name. This can be whatever you want.

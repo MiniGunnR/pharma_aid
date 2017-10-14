@@ -9,9 +9,8 @@ class SignupForm(forms.Form):
     first_name = forms.CharField(max_length=30, label='First Name', widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
     last_name = forms.CharField(max_length=30, label='Last Name', widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
     mobile = forms.CharField(max_length=30, label='Mobile Number', widget=forms.TextInput(attrs={'placeholder': 'Mobile Number'}))
-    address = forms.CharField(max_length=255, required=False, widget=forms.TextInput(attrs={'placeholder': 'Address'}))
-    institution = forms.CharField(max_length=255, required=False)
-    department = forms.CharField(max_length=255, required=False)
+    institution = forms.CharField(max_length=100, required=False)
+    department = forms.CharField(max_length=100, required=False)
 
     def signup(self, request, user):
         user.first_name = self.cleaned_data['first_name']
@@ -19,7 +18,6 @@ class SignupForm(forms.Form):
         user.mobile = self.cleaned_data['mobile']
         user.save()
         user.profile.user = user
-        user.profile.address = self.cleaned_data['address']
         user.profile.institution = self.cleaned_data['institution']
         user.profile.department = self.cleaned_data['department']
         user.profile.save()
