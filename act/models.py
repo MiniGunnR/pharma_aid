@@ -95,3 +95,12 @@ class AddressInfo(TimeStamped):
     def __str__(self):
         return "{0} - Info".format(self.address)
 
+
+class Profile(TimeStamped):
+    user = models.OneToOneField(User)
+    address = models.CharField(max_length=255)
+    institution = models.CharField(max_length=255)
+    department = models.CharField(max_length=255)
+
+    def __str__(self):
+        return "{user}'s profile".format(user=self.user)

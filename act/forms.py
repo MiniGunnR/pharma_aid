@@ -18,3 +18,4 @@ class AddressInfoForm(ModelForm):
 
 class AddMobileForm(forms.Form):
     mobile = forms.CharField(max_length=50)
+
