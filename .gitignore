@@ -3,8 +3,7 @@ venv/
 *.pyc
 *.pyo
 db.sqlite3
-media/img/items/
-media/img/prescription/
+media/
 staticfiles/
 .DS_Store
 misc/mail/
