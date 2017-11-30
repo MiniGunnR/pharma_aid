@@ -17,10 +17,10 @@ class SignupForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         user.mobile = self.cleaned_data['mobile']
         user.save()
-        user.profile.user = user
-        user.profile.institution = self.cleaned_data['institution']
-        user.profile.department = self.cleaned_data['department']
-        user.profile.save()
+        # user.profile.user = user
+        # user.profile.institution = self.cleaned_data['institution']
+        # user.profile.department = self.cleaned_data['department']
+        # user.profile.save()
 
 
 class CustomLoginForm(LoginForm):

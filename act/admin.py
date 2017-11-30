@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 
-from .models import Address, AddressInfo, User
+from .models import Address, AddressInfo, User, Profile
 from utils.models import Misc
 
 
@@ -48,3 +48,5 @@ class CustomUserAdmin(UserAdmin):
     search_fields = ('email', 'first_name', 'last_name', 'mobile')
     ordering = ('email',)
 admin.site.register(User, CustomUserAdmin)
+
+admin.site.register(Profile)
