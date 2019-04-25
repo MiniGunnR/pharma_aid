@@ -84,7 +84,7 @@ def auto(request):
             price = 0.0
         else:
             try:
-                price = float(int(datum[3]))
+                price = float(datum[3])
             except:
                 price = 0.0
 
