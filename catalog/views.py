@@ -80,9 +80,9 @@ def auto(request):
             dosage = None
 
         if datum[3] == "":
-            price = 0
+            price = 0.0
         else:
-            price = datum[3]
+            price = float(datum[3])
 
         try:
             Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=price, is_active=datum[11], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
