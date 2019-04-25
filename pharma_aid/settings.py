@@ -1,4 +1,4 @@
-import os, socket
+import os, socket, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -7,7 +7,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ldt3jvaks6$3c^(!=#bmgmb*_qf^6$lul%ot5cfed%1o4f%z0i'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = (sys.argv[1] == 'runserver')
 
 ALLOWED_HOSTS = []
 
@@ -113,10 +113,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
-# Internationalization
-# https://docs.djangoproject.com/en/1.9/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Dhaka'
@@ -126,13 +122,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-#
-# MEDIA_URL = '/media/'
 
 STATIC_URL = '/static/'
 
