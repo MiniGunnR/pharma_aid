@@ -90,7 +90,7 @@ def auto(request):
         except IntegrityError as e:
             pass
         except ValidationError as e:
-            print(e)
+            pass
 
     return HttpResponseRedirect('/')
 
