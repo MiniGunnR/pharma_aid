@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ValidationError
 from django.core import serializers
 from django.db import IntegrityError
 from django.db.models import Q
@@ -88,6 +89,8 @@ def auto(request):
             Product.objects.create(name=datum[0], generic=datum[1], manufacturer=manufacturer, price=price, is_active=datum[11], unit=datum[5], dosage=dosage, category=category, subcategory=subcategory)
         except IntegrityError as e:
             pass
+        except ValidationError as e:
+            print(e)
 
     return HttpResponseRedirect('/')
 
