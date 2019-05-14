@@ -124,7 +124,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/' if (sys.argv[1] == 'runserver') else '/staticfiles/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
