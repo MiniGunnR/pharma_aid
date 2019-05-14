@@ -124,14 +124,14 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/' if (sys.argv[1] == 'runserver') else '/staticfiles/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
     os.path.join(BASE_DIR, 'uploads'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'production', 'static')
 
 MEDIA_URL = '/media/'
 
