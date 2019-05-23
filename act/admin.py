@@ -19,6 +19,7 @@ admin.site.register(Address, AddressAdmin)
 
 
 class MiscAdmin(admin.ModelAdmin):
+    list_display = ('item', 'name', 'value')
     fieldsets = (
         (None, {'fields': ('item', 'name', 'value')}),
     )
