@@ -1,5 +1,5 @@
 defusedxml==0.4.1
-Django==1.9.8
+Django==1.11.28
 django-allauth==0.26.1
 django-decorator-include==1.1
 django-sendmail-backend==0.1.2
